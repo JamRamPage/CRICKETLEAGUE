@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Teams</h1>
+
+<table class="center">
+  <thead>
+    <tr>
+      <th style="text-align:center">Name</th>
+      <th style="text-align:center">Played</th>
+      <th style="text-align:center">Won</th>
+      <th style="text-align:center">Drawn</th>
+      <th style="text-align:center">Lost</th>
+      <th style="text-align:center">Noresult</th>
+      <th style="text-align:center">Points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @teams.each do |team| %>
+      <tr>
+        <td><%= team.name %></td>
+        <td><%= team.played %></td>
+        <td><%= team.won %></td>
+        <td><%= team.drawn %></td>
+        <td><%= team.lost %></td>
+        <td><%= team.noresult %></td>
+        <td><%= team.score %></td>
+        <td><%= link_to 'Show', team %></td>
+        <td><%= link_to 'Edit', edit_team_path(team) %></td>
+        <td><%= link_to 'Destroy', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<p style="text-align:center"><%= link_to 'New Team', new_team_path %></p>
