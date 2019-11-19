@@ -36,3 +36,21 @@ en:
     home:
       title: CricketLeagues.com
       welcome: Use the nav bar to select the page to visit.
+
+    contact:
+      title: Contact Us
+      contact_us: Complete the following form to email us.
+
+      name: "Name:"
+      enter_name: Enter your name
+      email: "Email:"
+      enter_email: Enter your email address
+      telephone: "Telephone:"
+      enter_telephone: Enter your telephone number
+      message: "Message:"
+      enter_message: What do want to say?
+      submit: "Submit"
+
+    request_contact:
+      no_email: You must supply an email address
+      email_sent: Thank you. We will be in touch shortly.
