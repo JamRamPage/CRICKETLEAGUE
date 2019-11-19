@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>CRICKETLEAGUE</title>
+    <link rel="Title Icon" href="images/logo.ico"/>
+    <title><%= I18n.t('.app_title') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,6 +11,48 @@
   </head>
 
   <body>
+    <style>
+      .navbar {
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background-color: #333;
+        color: white;
+        text-align: center;
+      }
+    </style>
+    <div class="navbar" id="header">
+      <div class="links">
+        <a class="active" href="home">Home</a>
+        <a href="matches">Matches & Fixtures</a>
+        <a href="table">League Table</a>
+        <a href="batters">Batters</a>
+        <a href="bowlers">Bowlers</a>
+        <a href="contact">Contact Us</a>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <style>
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    text-align: center;
+  }
+  </style>
+    <div class="footer">
+      <p>Copyright James Page <%= "#{Time.now.year}" %></p>
+    </div>
+    <% flash.each do |key, value| %>
+      <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>
+    <% end %>
     <%= yield %>
   </body>
 </html>

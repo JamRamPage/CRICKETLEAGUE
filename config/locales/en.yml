@@ -30,4 +30,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  app_title: CricketLeagues.com
+
+  home:
+    home:
+      title: CricketLeagues.com
+      welcome: Use the nav bar to select the page to visit.
