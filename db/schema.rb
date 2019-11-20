@@ -13,11 +13,11 @@
 ActiveRecord::Schema.define(version: 2019_11_19_191724) do
 
   create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.integer "won"
-    t.integer "drawn"
-    t.integer "lost"
-    t.integer "noresult"
+    t.string "name", null: false
+    t.integer "won", default: 0, null: false
+    t.integer "drawn", default: 0, null: false
+    t.integer "lost", default: 0, null: false
+    t.integer "noresult", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
