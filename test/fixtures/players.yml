@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  DOB: 2019-11-21
+  team: one
+  role: 1
+  battinghand: 1
+  bowlingstyle: 1
+  domesticteam: MyString
+
+two:
+  name: MyString
+  DOB: 2019-11-21
+  team: two
+  role: 1
+  battinghand: 1
+  bowlingstyle: 1
+  domesticteam: MyString
