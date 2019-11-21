@@ -9,11 +9,13 @@ class Team < ApplicationRecord
   validates :lost, numericality: {greater_than_or_equal_to: 0}
   validates :noresult, numericality: {only_integer: true}
   validates :noresult, numericality: {greater_than_or_equal_to: 0}
-  
+
   def score
     2 * won + drawn + noresult
   end
   def played
     won + drawn + lost + noresult
   end
+
+  has_many :matches, dependent: :destroy
 end

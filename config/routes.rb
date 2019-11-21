@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :matches
   resources :teams
   root 'home#home'
   get 'home', to: 'home#home'

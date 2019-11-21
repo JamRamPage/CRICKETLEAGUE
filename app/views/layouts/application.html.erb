@@ -24,12 +24,12 @@
     </style>
     <div class="navbar" id="header">
       <div class="links">
-        <a class="active" href="home">Home</a>
-        <a href="matches">Matches & Fixtures</a>
-        <a href="table">League Table</a>
-        <a href="batters">Batters</a>
-        <a href="bowlers">Bowlers</a>
-        <a href="contact">Contact Us</a>
+        <a class="active" href="home"><%= t('navbar.home')%></a>
+        <a href="matches"><%= t('matches_and_fixtures')%></a>
+        <a href="table"><%= t('league_table')%></a>
+        <a href="batters"><%= t('batters')%></a>
+        <a href="bowlers"><%= t('bowlers')%></a>
+        <a href="contact"><%= t('contact_us')%></a>
       </div>
     </div>
     <br>
@@ -50,9 +50,9 @@
     <div class="footer">
       <p class="footer">Copyright James Page <%= "#{Time.now.year}" %></p>
     </div>
-    <% flash.each do |key, value| %>
+      <% flash.each do |key, value| %>
       <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>
-    <% end %>
+      <% end %>
     <%= yield %>
   </body>
 </html>

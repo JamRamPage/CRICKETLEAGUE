@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2019-11-20
+  hometeam: one
+  awayteam: one
+  stadium: MyString
+
+two:
+  date: 2019-11-21
+  hometeam: two
+  awayteam: two
+  stadium: MyString

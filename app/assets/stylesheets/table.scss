@@ -1,7 +1,11 @@
-thead, table, td, th {
+table, td, th {
   border: 1px solid black;
   text-align: center;
-  width:50%;
+  width:60%;
+  white-space: nowrap;
+}
+table thead th {
+  text-align: center;
 }
 
 table.center {

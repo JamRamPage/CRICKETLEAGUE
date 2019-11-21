@@ -31,6 +31,14 @@
 
 en:
   app_title: CricketLeagues.com
+  
+  navbar:
+    home: Home
+    matches_and_fixtures: Matches & Fixtures
+    league_table: League Table
+    batters: Batters
+    bowlers: Bowlers
+    contact_us: Contact Us
 
   home:
     home:
@@ -52,5 +60,7 @@ en:
       submit: "Submit"
 
     request_contact:
+      message: Could you get in touch with me please?
       no_email: You must supply an email address
       email_sent: Thank you. We will be in touch shortly.
+      site_email: support@cricketleagues.com
