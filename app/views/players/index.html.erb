@@ -2,7 +2,7 @@
 
 <h1>Players</h1>
 
-<table>
+<table class="center">
   <thead>
     <tr>
       <th>Name</th>
@@ -21,7 +21,7 @@
       <tr>
         <td><%= player.name %></td>
         <td><%= player.DOB %></td>
-        <td><%= player.team %></td>
+        <td><%= player.team.name %></td>
         <td><%= player.role %></td>
         <td><%= player.battinghand %></td>
         <td><%= player.bowlingstyle %></td>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Player', new_player_path %>
+<p style="text-align:center"><%= link_to 'New Player', new_player_path %></p>

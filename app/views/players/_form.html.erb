@@ -18,27 +18,27 @@
 
   <div class="field">
     <%= form.label :DOB %>
-    <%= form.date_select :DOB %>
+    <%= form.date_select :DOB, start_year: Time.now.year - 100, end_year: Time.now.year %>
   </div>
 
   <div class="field">
     <%= form.label :team_id %>
-    <%= form.text_field :team_id %>
+    <%= form.collection_select :team_id, Team.order(:name), :id, :name, include_blank: false %>
   </div>
 
   <div class="field">
     <%= form.label :role %>
-    <%= form.number_field :role %>
+    <%= form.select :role, Player.roles.keys.map {|role| [role.titleize,role]} %>
   </div>
 
   <div class="field">
     <%= form.label :battinghand %>
-    <%= form.number_field :battinghand %>
+    <%= form.select :battinghand, Player.battinghands.keys.map {|battinghand| [battinghand.titleize,battinghand]} %>
   </div>
 
   <div class="field">
     <%= form.label :bowlingstyle %>
-    <%= form.number_field :bowlingstyle %>
+    <%= form.select :bowlingstyle, Player.bowlingstyles.keys.map {|bowlingstyle| [bowlingstyle.titleize,bowlingstyle]} %>
   </div>
 
   <div class="field">
