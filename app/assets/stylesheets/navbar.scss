@@ -8,11 +8,12 @@
   font-size: 17px;
 }
 
+/* Pads the top of the page so that it's below the nav bar */
 .main {
-    margin-top: 30px;
+    margin-top: 5%;
 }
 
-/* Change the colour of links on hover */
+/* Change the colour of links when the mouse moves over them*/
 .navbar a:hover {
   background-color: #8ceeff;
   color: black;

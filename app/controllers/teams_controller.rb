@@ -4,6 +4,7 @@ class TeamsController < ApplicationController
   # GET /teams
   # GET /teams.json
   def index
+    #Sorts teams according to their points scored - highest first
     @teams = Team.all.sort {|team1, team2| team2.score <=> team1.score}
   end
 

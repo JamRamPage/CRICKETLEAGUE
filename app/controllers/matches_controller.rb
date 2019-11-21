@@ -4,6 +4,8 @@ class MatchesController < ApplicationController
   # GET /matches
   # GET /matches.json
   def index
+    #Sorts the list of matches according to their date
+    #Most recent/ furthest in future appear first:
     @matches = Match.all.sort {|match1, match2| match2.date <=> match1.date}
   end
 

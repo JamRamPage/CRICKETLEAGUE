@@ -1,9 +1,8 @@
-// Place all the styles related to the Home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+// Headers are centred by default
 h1 {
   text-align: center;
 }
+// Forms are displayed in block format
 form label, form input {
   display: block;
   margin: 10px;

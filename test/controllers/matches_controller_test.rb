@@ -1,10 +1,9 @@
 require 'test_helper'
 
 class MatchesControllerTest < ActionDispatch::IntegrationTest
+
   setup do
     @match = matches(:one)
-    @hometeam = teams(:one)
-    @awayteam = teams(:two)
   end
 
   test "should get index" do
