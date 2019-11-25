@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :innings
   resources :players
   resources :matches
   resources :teams

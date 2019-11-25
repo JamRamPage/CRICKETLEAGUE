@@ -12,4 +12,8 @@ class Match < ApplicationRecord
       errors.add(:awayteam, "awayteam cannot equal hometeam")
     end
   end
+
+  def matchname
+    "#{self.date}: #{self.hometeam} V #{self.awayteam}"
+  end
 end

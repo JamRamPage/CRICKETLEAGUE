@@ -1,0 +1,42 @@
+<%= form_with(model: innings, local: true) do |form| %>
+  <% if innings.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(innings.errors.count, "error") %> prohibited this innings from being saved:</h2>
+
+      <ul>
+      <% innings.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :match_id %>
+    <%= form.collection_select :match_id, Match.order(:date), :id, :matchname, include_blank: false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :hometeambatted %>
+    <%= form.check_box :hometeambatted, checked_value: 1, unchecked_value: 0%>
+  </div>
+
+  <div class="field">
+    <%= form.label :byes %>
+    <%= form.number_field :byes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :legbyes %>
+    <%= form.number_field :legbyes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :penalties %>
+    <%= form.number_field :penalties %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

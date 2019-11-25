@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  match: one
+  hometeambatted: false
+  byes: 1
+  legbyes: 1
+  penalties: 1
+
+two:
+  match: two
+  hometeambatted: false
+  byes: 1
+  legbyes: 1
+  penalties: 1
