@@ -19,4 +19,5 @@ class Innings < ApplicationRecord
     "#{match.matchname}: Batting team: #{self.battingteam}"
   end
 
+  has_many :bowlinginnings
 end

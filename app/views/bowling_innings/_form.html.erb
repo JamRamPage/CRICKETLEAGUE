@@ -1,0 +1,57 @@
+<%= form_with(model: bowling_innings, local: true) do |form| %>
+  <% if bowling_innings.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(bowling_innings.errors.count, "error") %> prohibited this bowling_innings from being saved:</h2>
+
+      <ul>
+      <% bowling_innings.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Innings_id %>
+    <%= form.collection_select :Innings_id, Innings.order(:innings_name), :id, :innings_name, include_blank: false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Player_id %>
+    <%= form.collection_select :Player_id, Player.where('bowlingstyle != 0').order(:name), :id, :name, include_blank: false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :overs %>
+    <%= form.text_field :overs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :maidens %>
+    <%= form.number_field :maidens %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runs %>
+    <%= form.number_field :runs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wickets %>
+    <%= form.number_field :wickets %>
+  </div>
+
+  <div class="field">
+    <%= form.label :no_balls %>
+    <%= form.number_field :no_balls %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wides %>
+    <%= form.number_field :wides %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
