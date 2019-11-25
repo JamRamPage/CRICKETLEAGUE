@@ -15,9 +15,9 @@ ActiveRecord::Schema.define(version: 2019_11_25_184644) do
   create_table "innings", force: :cascade do |t|
     t.integer "match_id"
     t.boolean "hometeambatted", null: false
-    t.integer "byes", null: false
-    t.integer "legbyes", null: false
-    t.integer "penalties", null: false
+    t.integer "byes", default: 0, null: false
+    t.integer "legbyes", default: 0, null: false
+    t.integer "penalties", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["match_id"], name: "index_innings_on_match_id"

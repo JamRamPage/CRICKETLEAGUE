@@ -2,11 +2,11 @@
 
 <h1>Innings</h1>
 
-<table>
+<table class="center">
   <thead>
     <tr>
       <th>Match</th>
-      <th>Hometeambatted</th>
+      <th>BattingTeam</th>
       <th>Byes</th>
       <th>Legbyes</th>
       <th>Penalties</th>
@@ -17,8 +17,8 @@
   <tbody>
     <% @innings.each do |innings| %>
       <tr>
-        <td><%= innings.match %></td>
-        <td><%= innings.hometeambatted %></td>
+        <td><%= innings.match.matchname %></td>
+        <td><%= innings.battingteam %></td>
         <td><%= innings.byes %></td>
         <td><%= innings.legbyes %></td>
         <td><%= innings.penalties %></td>

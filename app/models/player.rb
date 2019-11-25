@@ -1,7 +1,7 @@
 class Player < ApplicationRecord
   belongs_to :team
   #Defines enumerations for a player's roles in a team:
-  enum role: [:Batter, :Bowler, :WicketKeeper]
+  enum role: [:Batter, :Bowler, :WicketKeeper, :AllRounder]
   enum battinghand: [:Right, :Left]
   #NA used for players who don't bowl (wicket keepers and some batsmen)
   # Abbreviations used for bowling styles, might change later:
