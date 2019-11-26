@@ -1,0 +1,62 @@
+<%= form_with(model: batting_innings, local: true) do |form| %>
+  <% if batting_innings.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(batting_innings.errors.count, "error") %> prohibited this batting_innings from being saved:</h2>
+
+      <ul>
+      <% batting_innings.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :Innings_id %>
+    <%= form.collection_select :Innings_id, Innings.order(:innings_name), :id, :innings_name, include_blank: false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :Player_id %>
+    <%= form.collection_select :Player_id, Player.order(:name), :id, :name, include_blank: false %>
+  </div>
+
+  <div class="field">
+    <%= form.label :runs %>
+    <%= form.number_field :runs %>
+  </div>
+
+  <div class="field">
+    <%= form.label :balls %>
+    <%= form.number_field :balls %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fours %>
+    <%= form.number_field :fours %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sixes %>
+    <%= form.number_field :sixes %>
+  </div>
+
+  <div class="field">
+    <%= form.label :howout %>
+    <%= form.select :howout, BattingInnings.howouts.keys.map {|howout| [howout.titleize,howout]} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :bowler_id %>
+    <%= form.collection_select :bowler_id, Player.where('bowlingstyle != 0').order(:name), :id, :name, include_blank: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fielder_id %>
+    <%= form.collection_select :fielder_id, Player.order(:name), :id, :name, include_blank: true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

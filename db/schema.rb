@@ -10,7 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_25_190550) do
+ActiveRecord::Schema.define(version: 2019_11_25_195139) do
+
+  create_table "batting_innings", force: :cascade do |t|
+    t.integer "Innings_id", null: false
+    t.integer "Player_id", null: false
+    t.integer "runs", default: 0, null: false
+    t.integer "balls", default: 0, null: false
+    t.integer "fours", default: 0, null: false
+    t.integer "sixes", default: 0, null: false
+    t.integer "howout", default: 0, null: false
+    t.integer "bowler_id"
+    t.integer "fielder_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["Innings_id"], name: "index_batting_innings_on_Innings_id"
+    t.index ["Player_id"], name: "index_batting_innings_on_Player_id"
+    t.index ["bowler_id"], name: "index_batting_innings_on_bowler_id"
+    t.index ["fielder_id"], name: "index_batting_innings_on_fielder_id"
+  end
 
   create_table "bowling_innings", force: :cascade do |t|
     t.integer "Innings_id", null: false

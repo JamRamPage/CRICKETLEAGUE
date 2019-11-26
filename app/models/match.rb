@@ -16,4 +16,5 @@ class Match < ApplicationRecord
   def matchname
     "#{self.date}: #{self.hometeam.name} V #{self.awayteam.name}"
   end
+
 end

@@ -18,4 +18,5 @@
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.uncountable %w(innings)
   inflect.uncountable %w(bowling_innings)
+  inflect.uncountable %w(batting_innings)
 end
