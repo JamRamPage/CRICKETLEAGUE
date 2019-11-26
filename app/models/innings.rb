@@ -19,5 +19,8 @@ class Innings < ApplicationRecord
     "#{match.matchname}: Batting team: #{self.battingteam}"
   end
 
+  scope :total_runs, lambda { joins(:bowling_innings).merge(BowlingInnings.runsconceded) }
+  scope :total_balls, lambda { joins(:bowling_innings).merge(BowlingInnings.ballsbowled) }
+
   has_many :bowlinginnings
 end
