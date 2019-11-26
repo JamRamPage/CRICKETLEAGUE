@@ -13,8 +13,8 @@ class MatchesController < ApplicationController
   # GET /matches/1.json
   def show
     @battinginnings = BattingInnings.joins(:Innings => :match)
-    @homeinnings = @battinginnings.where("innings.hometeambatted" => true)
-    @awayinnings = @battinginnings.where("innings.hometeambatted" => false)
+    @homeinnings = @battinginnings.where("innings.hometeambatted" => true).where("innings.match_id" => @match)
+    @awayinnings = @battinginnings.where("innings.hometeambatted" => false).where("innings.match_id" => @match)
   end
 
   # GET /matches/new
