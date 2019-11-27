@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Innings</th>
+      <th>Batsman Number</th>
       <th>Player</th>
       <th>Runs</th>
       <th>Balls</th>
@@ -22,6 +23,7 @@
     <% @batting_innings.each do |batting_innings| %>
       <tr>
         <td><%= batting_innings.Innings.innings_name %></td>
+        <td><%= batting_innings.batsman_number %></td>
         <td><%= batting_innings.Player.name %></td>
         <td><%= batting_innings.runs %></td>
         <td><%= batting_innings.balls %></td>

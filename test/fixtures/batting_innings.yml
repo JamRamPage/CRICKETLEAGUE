@@ -3,6 +3,7 @@
 one:
   Innings: one
   Player: one
+  batsman_number: 1
   runs: 1
   balls: 1
   fours: 1
@@ -14,6 +15,7 @@ one:
 two:
   Innings: two
   Player: two
+  batsman_number: 2
   runs: 1
   balls: 1
   fours: 1

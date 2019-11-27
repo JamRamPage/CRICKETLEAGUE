@@ -1,22 +1,24 @@
 <p id="notice"><%= notice %></p>
-<h1><%= @match.hometeam.name %> Innings </h1>
+<h1><%= @match.hometeam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
   <table class="center">
     <thead>
       <tr>
-        <th>Batsman</th>
-        <th>How Out</th>
-        <th>Runs</th>
-        <th>Balls</th>
-        <th>4s</th>
-        <th>6s</th>
-        <th>Strike Rate</th>
+        <th></th>
+        <th><%= I18n.t('.matches.scorecard.batsman') %></th>
+        <th><%= I18n.t('.matches.scorecard.how_out') %></th>
+        <th><%= I18n.t('.matches.scorecard.runs') %></th>
+        <th><%= I18n.t('.matches.scorecard.balls') %></th>
+        <th><%= I18n.t('.matches.scorecard.fours') %></th>
+        <th><%= I18n.t('.matches.scorecard.sixes') %></th>
+        <th><%= I18n.t('.matches.scorecard.strike_rate') %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @homeinnings.where('matches.hometeam_id' => @match.hometeam).each do |batting_innings| %>
+      <% @homebattinginnings.each do |batting_innings| %>
         <tr>
+          <td><%= batting_innings.batsman_number %></td>
           <td><%= batting_innings.Player.name %></td>
           <td><%= batting_innings.outDescription %></td>
           <td><%= batting_innings.runs %></td>
@@ -31,26 +33,27 @@
       <% end %>
       <tr>
         <td>Extras:</td>
-        <td></td>
+        <td></td><td>30(b: <%= if !(@homeinnings==nil) then @homeinnings.byes end %>,lb: <%= if !(@homeinnings==nil) then @homeinnings.legbyes end %>,w: ,nb: ,p:<%= if !(@homeinnings==nil) then @homeinnings.penalties end %>)</td>
       </tr>
       <tr>
         <td><strong>Total:</strong></td>
-        <td></td>
+        <td></td><td><%=%>/<%=%> (<%=%> Overs, RR: <%=%>)</td>
       </tr>
     </tbody>
 
   </table>
+  <br>
   <table class="center">
     <thead>
       <tr>
-        <th>Bowler</th>
-        <th>Overs</th>
-        <th>Maidens</th>
-        <th>Runs</th>
-        <th>Wickets</th>
-        <th>Economy</th>
-        <th>No Balls</th>
-        <th>Wides</th>
+        <th><%= I18n.t('.matches.scorecard.bowler') %></th>
+        <th><%= I18n.t('.matches.scorecard.overs') %></th>
+        <th><%= I18n.t('.matches.scorecard.maidens') %></th>
+        <th><%= I18n.t('.matches.scorecard.runs') %></th>
+        <th><%= I18n.t('.matches.scorecard.wickets') %></th>
+        <th><%= I18n.t('.matches.scorecard.econ') %></th>
+        <th><%= I18n.t('.matches.scorecard.no_balls') %></th>
+        <th><%= I18n.t('.matches.scorecard.wides') %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -58,25 +61,26 @@
     <tbody>
     </tbody>
   </table>
-
-<h1><%= @match.awayteam.name %> Innings </h1>
+<h1><%= @match.awayteam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
   <table class="center">
     <thead>
       <tr>
-        <th>Batsman</th>
-        <th>How Out</th>
-        <th>Runs</th>
-        <th>Balls</th>
-        <th>4s</th>
-        <th>6s</th>
-        <th>Strike Rate</th>
+        <th></th>
+        <th><%= I18n.t('.matches.scorecard.batsman') %></th>
+        <th><%= I18n.t('.matches.scorecard.how_out') %></th>
+        <th><%= I18n.t('.matches.scorecard.runs') %></th>
+        <th><%= I18n.t('.matches.scorecard.balls') %></th>
+        <th><%= I18n.t('.matches.scorecard.fours') %></th>
+        <th><%= I18n.t('.matches.scorecard.sixes') %></th>
+        <th><%= I18n.t('.matches.scorecard.strike_rate') %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
 
     <tbody>
-      <% @awayinnings.each do |batting_innings| %>
+      <% @awaybattinginnings.each do |batting_innings| %>
         <tr>
+          <td><%= batting_innings.batsman_number %></td>
           <td><%= batting_innings.Player.name %></td>
           <td><%= batting_innings.outDescription %></td>
           <td><%= batting_innings.runs %></td>
@@ -91,30 +95,46 @@
       <% end %>
       <tr>
         <td>Extras:</td>
-        <td></td>
+        <td></td><td>30(b: <%= if !(@awayinnings==nil) then @awayinnings.byes end %>,lb: <%= if !(@awayinnings==nil) then @awayinnings.legbyes end %>,w: ,nb: ,p:<%= if !(@awayinnings==nil) then @awayinnings.penalties end %>)</td>
       </tr>
       <tr>
         <td><strong>Total:</strong></td>
-        <td></td>
+        <td></td><td><%=%>/<%=%> (<%=%> Overs, RR: <%=%>)</td>
       </tr>
     </tbody>
   </table>
+  <br>
   <table class="center">
     <thead>
       <tr>
-        <th>Bowler</th>
-        <th>Overs</th>
-        <th>Maidens</th>
-        <th>Runs</th>
-        <th>Wickets</th>
-        <th>Economy</th>
-        <th>No Balls</th>
-        <th>Wides</th>
+        <th><%= I18n.t('.matches.scorecard.bowler') %></th>
+        <th><%= I18n.t('.matches.scorecard.overs') %></th>
+        <th><%= I18n.t('.matches.scorecard.maidens') %></th>
+        <th><%= I18n.t('.matches.scorecard.runs') %></th>
+        <th><%= I18n.t('.matches.scorecard.wickets') %></th>
+        <th><%= I18n.t('.matches.scorecard.econ') %></th>
+        <th><%= I18n.t('.matches.scorecard.no_balls') %></th>
+        <th><%= I18n.t('.matches.scorecard.wides') %></th>
         <th colspan="3"></th>
       </tr>
     </thead>
 
     <tbody>
+      <% @awaybowlinginnings.each do |bowling_innings| %>
+        <tr>
+          <td><%= bowling_innings.Player.name %></td>
+          <td><%= bowling_innings.overs %></td>
+          <td><%= bowling_innings.maidens %></td>
+          <td><%= bowling_innings.runs %></td>
+          <td><%= bowling_innings.wickets %></td>
+          <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
+          <td><%= bowling_innings.no_balls %></td>
+          <td><%= bowling_innings.wides %></td>
+          <td><%= link_to 'Show', bowling_innings %></td>
+          <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings) %></td>
+          <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 

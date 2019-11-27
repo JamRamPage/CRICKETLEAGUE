@@ -17,7 +17,7 @@ class BattingInningsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create batting_innings" do
     assert_difference('BattingInnings.count') do
-      post batting_innings_index_url, params: { batting_innings: { Innings_id: @batting_innings.Innings_id, Player_id: @batting_innings.Player_id, balls: @batting_innings.balls, bowler_id: @batting_innings.bowler_id, fielder_id: @batting_innings.fielder_id, fours: @batting_innings.fours, howout: @batting_innings.howout, runs: @batting_innings.runs, sixes: @batting_innings.sixes } }
+      post batting_innings_index_url, params: { batting_innings: { Innings_id: @batting_innings.Innings_id, Player_id: @batting_innings.Player_id, batsman_number: @batting_innings.batsman_number, balls: @batting_innings.balls, bowler_id: @batting_innings.bowler_id, fielder_id: @batting_innings.fielder_id, fours: @batting_innings.fours, howout: @batting_innings.howout, runs: @batting_innings.runs, sixes: @batting_innings.sixes } }
     end
 
     assert_redirected_to batting_innings_url(BattingInnings.last)
@@ -34,7 +34,7 @@ class BattingInningsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update batting_innings" do
-    patch batting_innings_url(@batting_innings), params: { batting_innings: { Innings_id: @batting_innings.Innings_id, Player_id: @batting_innings.Player_id, balls: @batting_innings.balls, bowler_id: @batting_innings.bowler_id, fielder_id: @batting_innings.fielder_id, fours: @batting_innings.fours, howout: @batting_innings.howout, runs: @batting_innings.runs, sixes: @batting_innings.sixes } }
+    patch batting_innings_url(@batting_innings), params: { batting_innings: { Innings_id: @batting_innings.Innings_id, Player_id: @batting_innings.Player_id, batsman_number: @batting_innings.batsman_number, balls: @batting_innings.balls, bowler_id: @batting_innings.bowler_id, fielder_id: @batting_innings.fielder_id, fours: @batting_innings.fours, howout: @batting_innings.howout, runs: @batting_innings.runs, sixes: @batting_innings.sixes } }
     assert_redirected_to batting_innings_url(@batting_innings)
   end
 

@@ -69,6 +69,6 @@ class BattingInningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def batting_innings_params
-      params.require(:batting_innings).permit(:Innings_id, :Player_id, :runs, :balls, :fours, :sixes, :howout, :bowler_id, :fielder_id)
+      params.require(:batting_innings).permit(:Innings_id, :Player_id, :batsman_number, :runs, :balls, :fours, :sixes, :howout, :bowler_id, :fielder_id)
     end
 end

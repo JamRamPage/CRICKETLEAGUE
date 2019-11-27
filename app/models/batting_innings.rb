@@ -6,9 +6,10 @@ class BattingInnings < ApplicationRecord
   enum howout: [:NotOut, :DNB, :Bowled, :Caught, :LBW, :RunOut, :Stumped, :Retired, :HitBallTwice, :HitWicket, :ObstructingField, :TimedOut]
 
   #We do not necessarily require a bowler/fielder because a batsman may not have been out:
-  validates :Innings, :Player, :runs, :balls, :fours, :sixes, :howout, :batsman_number, presence: true
+  validates :Innings, :Player, :batsman_number, :runs, :balls, :fours, :sixes, :howout, :batsman_number, presence: true
 
   validates :runs, :balls, :fours, :sixes, :batsman_number, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+  validates :batsman_number, numericality: {only_integer: true, greater_than: 0}
 
   def outDescription
     if (self.howout_before_type_cast == 0 || self.howout_before_type_cast == 1 || self.howout_before_type_cast > 7) then

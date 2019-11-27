@@ -31,7 +31,7 @@
 
 en:
   app_title: CricketLeagues.com
-  
+
   navbar:
     home: Home
     matches_and_fixtures: Matches & Fixtures
@@ -64,3 +64,43 @@ en:
       no_email: You must supply an email address
       email_sent: Thank you. We will be in touch shortly.
       site_email: support@cricketleagues.com
+
+  teams:
+    heading: Teams
+    name: Name
+    played: Played
+    won: Won
+    drawn: Drawn
+    lost: Lost
+    no_result: No Result
+    points: Points
+
+  matches:
+    heading: Matches
+    date: Date
+    home_team: Home Team
+    home_score: Home Score
+    v: V
+    away_score: Away Score
+    away_team: Away Team
+    stadium: Stadium
+
+    scorecard:
+      innings_title: Innings
+
+      batsman: Batsman
+      how_out: How Out
+      runs: Runs
+      balls: Balls
+      fours: "4s"
+      sixes: "6s"
+      strike_rate: Strike Rate
+
+      bowler: Bowler
+      overs: Overs
+      maidens: Maidens
+      runs: Runs
+      wickets: Wickets
+      econ: Economy
+      no_balls: No Balls
+      wides: Wides

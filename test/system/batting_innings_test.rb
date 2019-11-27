@@ -16,6 +16,7 @@ class BattingInningsTest < ApplicationSystemTestCase
 
     fill_in "Innings", with: @batting_innings.Innings_id
     fill_in "Player", with: @batting_innings.Player_id
+    fill_in "batsman_number", with: @battinghand.batsman_number
     fill_in "Balls", with: @batting_innings.balls
     fill_in "Bowler", with: @batting_innings.bowler_id
     fill_in "Fielder", with: @batting_innings.fielder_id
@@ -35,6 +36,7 @@ class BattingInningsTest < ApplicationSystemTestCase
 
     fill_in "Innings", with: @batting_innings.Innings_id
     fill_in "Player", with: @batting_innings.Player_id
+    fill_in "batsman_number", with: @battinghand.batsman_number
     fill_in "Balls", with: @batting_innings.balls
     fill_in "Bowler", with: @batting_innings.bowler_id
     fill_in "Fielder", with: @batting_innings.fielder_id
