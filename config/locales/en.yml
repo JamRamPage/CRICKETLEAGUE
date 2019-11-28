@@ -65,6 +65,20 @@ en:
       email_sent: Thank you. We will be in touch shortly.
       site_email: support@cricketleagues.com
 
+    stats:
+      name: Name
+      team: Team
+      runs: Runs
+      wkts: Wickets
+      avg: Average
+      fours: "4s"
+      sixes: "6s"
+      best_bowl: Best Bowling
+      high_score: Highest Score
+      matches: Matches
+      style: Bowling Style
+
+
   teams:
     heading: Teams
     name: Name

@@ -2,6 +2,20 @@ class HomeController < ApplicationController
   def home
   end
 
+  def batters
+    @batters = Player.all
+  end
+
+  def bowlers
+    #TODO: Select only bowlers who have bowled in at least 1 Match
+    # i.e. there is a bowling innings that belongs to them.
+
+    #Best bowling should be the bowlers best performance:
+    # firstly the greatest number of wickets, then the fewest
+    # runs conceded (7 for 102 > 6 for 19, but 7 for 100 < 7 for 50)
+    @bowlers = Player.all.where.not("bowlingstyle" => 0)
+  end
+
   def contact
   end
 
