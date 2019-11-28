@@ -31,13 +31,23 @@
           <td><%= link_to 'Destroy', batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
+      <%
+      @homebattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => true)
+      homescorebattedruns = @homebattinginningses.sum("runs")
+      homewides = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => true).sum("wides")
+      homenoballs = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => true).sum("no_balls")
+      homescorebowledextras = homewides + homenoballs
+      homescoremiscextras = Innings.joins(:match).where("innings.match_id" => @match).where("innings.hometeambatted" => true).sum("byes + legbyes + penalties")
+      homewicketsconceded = @homebattinginningses.where.not(HowOut: 0).where.not(HowOut: 1).count
+      homeovers = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => true).sum("overs")
+      %>
       <tr>
         <td>Extras:</td>
-        <td></td><td>30(b: <%= if !(@homeinnings==nil) then @homeinnings.byes end %>,lb: <%= if !(@homeinnings==nil) then @homeinnings.legbyes end %>,w: ,nb: ,p:<%= if !(@homeinnings==nil) then @homeinnings.penalties end %>)</td>
+        <td></td><td>30(b: <%= if !(@homeinnings==nil) then @homeinnings.byes end %>,lb: <%= if !(@homeinnings==nil) then @homeinnings.legbyes end %>,w:<%= homewides%> ,nb:<%= homenoballs%> ,p:<%= if !(@homeinnings==nil) then @homeinnings.penalties end %>)</td>
       </tr>
       <tr>
         <td><strong>Total:</strong></td>
-        <td></td><td><%=%>/<%=%> (<%=%> Overs, RR: <%=%>)</td>
+        <td></td><td><%= homescorebattedruns + homescorebowledextras + homescoremiscextras%><%= if (homewicketsconceded < 10) then '/' end %><%=if (homewicketsconceded < 10) then homewicketsconceded end %> (<%= homeovers%> Overs, RR: <%= ((homescorebattedruns + homescorebowledextras + homescoremiscextras).to_f / homeovers.to_f).round(2)%>)</td>
       </tr>
     </tbody>
 
@@ -59,6 +69,21 @@
     </thead>
 
     <tbody>
+      <% @homebowlinginnings.each do |bowling_innings| %>
+        <tr>
+          <td><%= bowling_innings.Player.name %></td>
+          <td><%= bowling_innings.overs %></td>
+          <td><%= bowling_innings.maidens %></td>
+          <td><%= bowling_innings.runs %></td>
+          <td><%= bowling_innings.wickets %></td>
+          <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
+          <td><%= bowling_innings.no_balls %></td>
+          <td><%= bowling_innings.wides %></td>
+          <td><%= link_to 'Show', bowling_innings %></td>
+          <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings) %></td>
+          <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
     </tbody>
   </table>
 <h1><%= @match.awayteam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
@@ -93,13 +118,23 @@
           <td><%= link_to 'Destroy', batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
+      <%
+      @awaybattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => false)
+      awayscorebattedruns = @awaybattinginningses.sum("runs")
+      awaywides = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => false).sum("wides")
+      awaynoballs = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => false).sum("no_balls")
+      awayscorebowledextras = awaywides + awaynoballs
+      awayscoremiscextras = Innings.joins(:match).where("innings.match_id" => @match).where("innings.hometeambatted" => false).sum("byes + legbyes + penalties")
+      awaywicketsconceded = @awaybattinginningses.where.not(howout: 0).where.not(howout: 1).count
+      awayovers = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => false).sum("overs")
+      %>
       <tr>
         <td>Extras:</td>
-        <td></td><td>30(b: <%= if !(@awayinnings==nil) then @awayinnings.byes end %>,lb: <%= if !(@awayinnings==nil) then @awayinnings.legbyes end %>,w: ,nb: ,p:<%= if !(@awayinnings==nil) then @awayinnings.penalties end %>)</td>
+        <td></td><td>30(b: <%= if !(@awayinnings==nil) then @awayinnings.byes end %>,lb: <%= if !(@awayinnings==nil) then @awayinnings.legbyes end %>,w:<%= awaywides%> ,nb:<%= awaynoballs%> ,p:<%= if !(@awayinnings==nil) then @awayinnings.penalties end %>)</td>
       </tr>
       <tr>
         <td><strong>Total:</strong></td>
-        <td></td><td><%=%>/<%=%> (<%=%> Overs, RR: <%=%>)</td>
+        <td></td><td><%= awayscorebattedruns + awayscorebowledextras + awayscoremiscextras%><%= if (awaywicketsconceded < 10) then '/' end %><%=if (awaywicketsconceded < 10) then awaywicketsconceded end %> (<%= awayovers%> Overs, RR: <%= ((awayscorebattedruns + awayscorebowledextras + awayscoremiscextras).to_f / awayovers.to_f).round(2)%>)</td>
       </tr>
     </tbody>
   </table>
@@ -138,22 +173,9 @@
     </tbody>
   </table>
 
-
-
-
 <p>
   <strong>Date:</strong>
   <%= @match.date %>
-</p>
-
-<p>
-  <strong>Hometeam:</strong>
-  <%= @match.hometeam.name %>
-</p>
-
-<p>
-  <strong>Awayteam:</strong>
-  <%= @match.awayteam.name %>
 </p>
 
 <p>

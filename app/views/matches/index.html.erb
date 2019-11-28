@@ -19,29 +19,37 @@
   <tbody>
     <% @matches.each do |match| %>
       <% begin
-            homescorebattedruns = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => true).sum("runs")
+            @homebattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => true)
+            homescorebattedruns = @homebattinginningses.sum("runs")
             homescorebowledextras = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => true).sum("wides + no_balls")
             homescoremiscextras = Innings.joins(:match).where("innings.match_id" => match).where("innings.hometeambatted" => true).sum("byes + legbyes + penalties")
+            homewicketsconceded = @homebattinginningses.where.not(HowOut: 0).where.not(HowOut: 1).count
          rescue NoMethodError
+         #Match not Complete yet, (has no inningses belonging to it), so we output zeros
             homescorebattedruns = 0
             homescoremiscextras = 0
             homescoremiscextras = 0
+            homewicketsconceded = 0
          end %>
       <% begin
-            awayscorebattedruns = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false).sum("runs")
+            @awaybattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false)
+            awayscorebattedruns = @awaybattinginningses.sum("runs")
             awayscorebowledextras = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false).sum("wides + no_balls")
             awayscoremiscextras = Innings.joins(:match).where("innings.match_id" => match).where("innings.hometeambatted" => false).sum("byes + legbyes + penalties")
+            awaywicketsconceded = @awaybattinginningses.where.not(howout: 0).where.not(howout: 1).count
          rescue NoMethodError
+         #Match not Complete yet, (has no inningses belonging to it), so we output zeros
             awayscorebattedruns = 0
             awayscorebowledextras = 0
             awayscoremiscextras = 0
+            awaywicketsconceded = 0
          end %>
       <tr>
         <td><%= match.date %></td>
         <td><%= match.hometeam.name %></td>
-        <td><%= homescorebattedruns + homescorebowledextras + homescoremiscextras%></td>
+        <td><%= homescorebattedruns + homescorebowledextras + homescoremiscextras%><%= if (homewicketsconceded < 10) then '/' end %><%=if (homewicketsconceded < 10) then homewicketsconceded end %></td>
         <td>V</td>
-        <td><%= awayscorebattedruns + awayscorebowledextras + awayscoremiscextras%></td>
+        <td><%= awayscorebattedruns + awayscorebowledextras + awayscoremiscextras%><%= if (awaywicketsconceded < 10) then '/' end %><%=if (awaywicketsconceded < 10) then awaywicketsconceded end %></td>
         <td><%= match.awayteam.name %></td>
         <td><%= match.stadium %></td>
         <td><%= link_to 'Show', match %></td>

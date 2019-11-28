@@ -47,13 +47,14 @@
     text-align: center;
   }
   </style>
-    <div class="footer">
-      <p class="footer">Copyright James Page <%= "#{Time.now.year}" %></p>
-    </div>
+
       <% flash.each do |key, value| %>
       <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>
       <% end %>
 
     <%= yield %>
+    <div class="footer">
+      <p class="footer">Copyright James Page <%= "#{Time.now.year}" %></p>
+    </div>
   </body>
 </html>
