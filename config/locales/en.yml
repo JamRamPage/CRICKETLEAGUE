@@ -90,6 +90,8 @@ en:
     points: Points
 
   matches:
+    create_innings: Create Innings
+    add_innings: Add
     heading: Matches
     date: Date
     home_team: Home Team
