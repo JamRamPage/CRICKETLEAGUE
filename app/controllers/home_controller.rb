@@ -3,17 +3,13 @@ class HomeController < ApplicationController
   end
 
   def batters
-    @batters = Player.all
+    #We sort the batters according to the total runs they have scored (perhaps later I could add the ability to sort by other params)
+    @batters = Player.all.sort {|player1, player2| player2.totalRunsBatted.to_i <=> player1.totalRunsBatted.to_i}
   end
 
   def bowlers
-    #TODO: Select only bowlers who have bowled in at least 1 Match
-    # i.e. there is a bowling innings that belongs to them.
-
-    #Best bowling should be the bowlers best performance:
-    # firstly the greatest number of wickets, then the fewest
-    # runs conceded (7 for 102 > 6 for 19, but 7 for 100 < 7 for 50)
-    @bowlers = Player.all.where.not("bowlingstyle" => 0)
+    #We sort the bowlers according to the total wickets they have taken (again, perhaps later I could add the ability to sort by other params):
+    @bowlers = Player.all.where.not("bowlingstyle" => 0).sort_by {|player| [-player.totalWickets.to_i, if player.totalRunsConceded == "" then 999999999999 else player.totalRunsConceded.to_i end]}
   end
 
   def contact
