@@ -8,6 +8,9 @@ class InningsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get innings_index_url
     assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'h1', 'Innings'
   end
 
   test "should get new" do

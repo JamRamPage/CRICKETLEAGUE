@@ -8,6 +8,9 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get teams_url
     assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'h1', 'Teams'
   end
 
   test "should get new" do
@@ -26,6 +29,9 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
   test "should show team" do
     get team_url(@team)
     assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'p', 'New Player'
   end
 
   test "should get edit" do

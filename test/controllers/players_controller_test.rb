@@ -8,6 +8,9 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get players_url
     assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'h1', 'Players'
   end
 
   test "should get new" do

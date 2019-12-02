@@ -46,4 +46,6 @@ class Player < ApplicationRecord
       ""
     end
   end
+  has_many :bowling_innings, dependent: :destroy
+  has_many :batting_innings, dependent: :destroy
 end

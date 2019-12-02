@@ -37,4 +37,22 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_not_empty flash[:notice]
   end
 
+  test "should get batters" do
+    get batters_url
+    assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'h1', 'Batters'
+    assert_select 'p', 'New Player'
+  end
+
+  test "should get bowlers" do
+    get bowlers_url
+    assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'h1', 'Bowlers'
+    assert_select 'p', 'New Player'
+  end
+
 end

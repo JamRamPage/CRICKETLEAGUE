@@ -9,6 +9,9 @@ class MatchesControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
     get matches_url
     assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'h1', 'Matches'
   end
 
   test "should get new" do
@@ -27,6 +30,9 @@ class MatchesControllerTest < ActionDispatch::IntegrationTest
   test "should show match" do
     get match_url(@match)
     assert_response :success
+
+    assert_select 'title', 'CricketLeagues.com'
+    assert_select 'p', 'Create Innings'
   end
 
   test "should get edit" do

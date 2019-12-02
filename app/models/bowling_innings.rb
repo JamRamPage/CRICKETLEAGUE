@@ -5,6 +5,9 @@ class BowlingInnings < ApplicationRecord
   validates :maidens, :runs, :no_balls, :wides, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :wickets, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10}
   validates :overs, numericality: {greater_than: 0}
+  #Number of overs is a float value, but it can only be up to (x).5 because an over is comprised
+  # of six deliveries.
+  validates_format_of :overs, :with => /\A[0-9]+\.[0-5]\z/
 
   #Works out the total number of balls bowled in a bowling innings:
   # Overs is given as a float, eg 5.4 (5 overs and 4 deliveries)

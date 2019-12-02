@@ -22,5 +22,6 @@ class Innings < ApplicationRecord
   scope :total_runs, lambda { joins(:bowling_innings).merge(BowlingInnings.runsconceded) }
   scope :total_balls, lambda { joins(:bowling_innings).merge(BowlingInnings.ballsbowled) }
 
-  has_many :bowlinginnings
+  has_many :bowling_innings, dependent: :destroy
+  has_many :batting_innings, dependent: :destroy
 end

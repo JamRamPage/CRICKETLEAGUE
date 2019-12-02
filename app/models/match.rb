@@ -18,4 +18,5 @@ class Match < ApplicationRecord
     "#{self.date}: #{self.hometeam.name} V #{self.awayteam.name}"
   end
 
+  has_many :innings, dependent: :destroy
 end
