@@ -43,7 +43,6 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'Batters'
-    assert_select 'p', 'New Player'
   end
 
   test "should get bowlers" do
@@ -52,7 +51,6 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'Bowlers'
-    assert_select 'p', 'New Player'
   end
 
 end

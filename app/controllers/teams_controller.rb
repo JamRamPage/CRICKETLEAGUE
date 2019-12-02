@@ -11,6 +11,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
+    @players = Player.joins(:team).where("team_id" => @team)
   end
 
   # GET /teams/new

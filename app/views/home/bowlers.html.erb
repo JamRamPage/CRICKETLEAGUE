@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= I18n.t('.navbar.bowlers') %></h1>
-<p style="text-align:center"><%= link_to 'New Player', new_player_path %></p>
 <table class="center">
   <thead>
     <tr>
@@ -39,7 +38,7 @@
        #Works out the bowler's best performance (if they have not bowled yet, output "")
        #The best performance is worked out like so:
        # => Take the performance/s (bowling_inningses) with the most amount of wickets
-       # => From these, select the one with the least amount of runs conceded.       
+       # => From these, select the one with the least amount of runs conceded.
        begin
           bowlerBestBowling = player.matchesBowled.order(wickets: :desc, runs: :asc).take
           bowlerBestWickets = bowlerBestBowling.wickets

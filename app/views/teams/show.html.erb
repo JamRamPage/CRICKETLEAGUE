@@ -1,39 +1,66 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @team.name %>
-</p>
+<table class="center">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Played</th>
+      <th>Won</th>
+      <th>Drawn</th>
+      <th>Lost</th>
+      <th>NoResult</th>
+      <th>Points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Played:</strong>
-  <%= @team.played %>
-</p>
+  <tbody>
+    <tr>
+      <td><%= @team.name %></td>
+      <td><%= @team.played %></td>
+      <td><%= @team.won %></td>
+      <td><%= @team.drawn %></td>
+      <td><%= @team.lost %></td>
+      <td><%= @team.noresult %></td>
+      <td><%= @team.score %></td>
+    </tr>
+  </tbody>
+</table>
 
-<p>
-  <strong>Won:</strong>
-  <%= @team.won %>
-</p>
+<h1>Players</h1>
 
-<p>
-  <strong>Drawn:</strong>
-  <%= @team.drawn %>
-</p>
+<table class="center">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Dob</th>
+      <th>Team</th>
+      <th>Role</th>
+      <th>Battinghand</th>
+      <th>Bowlingstyle</th>
+      <th>Domesticteam</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<p>
-  <strong>Lost:</strong>
-  <%= @team.lost %>
-</p>
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= player.name %></td>
+        <td><%= player.DOB %></td>
+        <td><%= player.team.name %></td>
+        <td><%= player.role %></td>
+        <td><%= player.battinghand %></td>
+        <td><%= player.bowlingstyle %></td>
+        <td><%= player.domesticteam %></td>
+        <td><%= link_to 'Show', player %></td>
+        <td><%= link_to 'Edit', edit_player_path(player) %></td>
+        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-<p>
-  <strong>Noresult:</strong>
-  <%= @team.noresult %>
-</p>
-
-<p>
-  <strong>Points:</strong>
-  <%= @team.score %>
-</p>
 
 <p style="text-align:center"><%= link_to 'New Player', new_player_path %></p>
 <%= link_to 'Edit', edit_team_path(@team) %> |
