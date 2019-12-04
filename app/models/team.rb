@@ -22,6 +22,7 @@ class Team < ApplicationRecord
   end
 
   #  has_many :matches, dependent: :destroy <- TODO: Should be this, fix later
-  has_many :matches
+  has_many :matches, class_name: "Match", foreign_key: "hometeam_id", dependent: :destroy
+  has_many :matches, class_name: "Match", foreign_key: "awayteam_id", dependent: :destroy
   has_many :players, dependent: :destroy
 end
