@@ -46,7 +46,7 @@
          end %>
       <tr>
         <td><%= match.date %></td>
-        <td><%= match.hometeam.name %></td>
+        <td><%= begin match.hometeam.name rescue NoMethodError end %></td>
         <td><%= homescorebattedruns + homescorebowledextras + homescoremiscextras%><%= if (homewicketsconceded < 10) then '/' end %><%=if (homewicketsconceded < 10) then homewicketsconceded end %></td>
         <td>V</td>
         <td><%= awayscorebattedruns + awayscorebowledextras + awayscoremiscextras%><%= if (awaywicketsconceded < 10) then '/' end %><%=if (awaywicketsconceded < 10) then awaywicketsconceded end %></td>

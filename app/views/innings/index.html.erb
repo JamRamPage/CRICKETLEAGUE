@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Innings</h1>
+
+<table class="center">
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>BattingTeam</th>
+      <th>Byes</th>
+      <th>Legbyes</th>
+      <th>Penalties</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @innings.each do |innings| %>
+      <tr>
+        <td><%= innings.match.matchname %></td>
+        <td><%= innings.battingteam %></td>
+        <td><%= innings.byes %></td>
+        <td><%= innings.legbyes %></td>
+        <td><%= innings.penalties %></td>
+        <td><%= link_to 'Show', innings %></td>
+        <td><%= link_to 'Edit', edit_innings_path(innings) %></td>
+        <td><%= link_to 'Destroy', innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Innings', new_innings_path %>

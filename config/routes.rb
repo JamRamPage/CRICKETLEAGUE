@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  resources :batting_innings, except: [:index]
-  resources :bowling_innings, except: [:index]
-  resources :innings, except: [:index]
+  resources :batting_innings
+  resources :bowling_innings
+  resources :innings
   resources :players
   resources :matches
   resources :teams
