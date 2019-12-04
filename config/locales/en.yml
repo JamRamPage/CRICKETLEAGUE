@@ -31,6 +31,7 @@
 
 en:
   app_title: CricketLeagues.com
+  footer: Copyright James Page
 
   navbar:
     home: Home
@@ -91,6 +92,7 @@ en:
 
   matches:
     create_innings: Create Innings
+    edit_innings: Edit Innings
     add_innings: Add
     heading: Matches
     date: Date

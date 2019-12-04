@@ -1,6 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @match.hometeam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
 <p style="text-align:center"><%= link_to I18n.t('.matches.create_innings'), new_innings_path %></p>
+<p style="text-align:center"><%= link_to I18n.t('.matches.edit_innings'), edit_innings_path %></p>
   <table class="center">
     <thead>
       <tr>
@@ -28,7 +29,6 @@
           <td><%= batting_innings.fours %></td>
           <td><%= batting_innings.sixes %></td>
           <td><%= ((batting_innings.runs.to_f / batting_innings.balls.to_f) * 100).round(2) %></td>
-          <td><%= link_to 'Show', batting_innings %></td>
           <td><%= link_to 'Edit', edit_batting_innings_path(batting_innings) %></td>
           <td><%= link_to 'Destroy', batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
@@ -82,7 +82,6 @@
           <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
           <td><%= bowling_innings.no_balls %></td>
           <td><%= bowling_innings.wides %></td>
-          <td><%= link_to 'Show', bowling_innings %></td>
           <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings) %></td>
           <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
@@ -91,6 +90,7 @@
   </table>
 <h1><%= @match.awayteam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
 <p style="text-align:center"><%= link_to I18n.t('.matches.create_innings'), new_innings_path %></p>
+<p style="text-align:center"><%= link_to I18n.t('.matches.edit_innings'), edit_innings_path %></p>
   <table class="center">
     <thead>
       <tr>
@@ -118,7 +118,6 @@
           <td><%= batting_innings.fours %></td>
           <td><%= batting_innings.sixes %></td>
           <td><%= ((batting_innings.runs.to_f / batting_innings.balls.to_f) * 100).round(2) %></td>
-          <td><%= link_to 'Show', batting_innings %></td>
           <td><%= link_to 'Edit', edit_batting_innings_path(batting_innings) %></td>
           <td><%= link_to 'Destroy', batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
@@ -171,7 +170,6 @@
           <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
           <td><%= bowling_innings.no_balls %></td>
           <td><%= bowling_innings.wides %></td>
-          <td><%= link_to 'Show', bowling_innings %></td>
           <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings) %></td>
           <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>

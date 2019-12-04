@@ -18,10 +18,10 @@ class HomeController < ApplicationController
   #Used to send emails:
   def request_contact
     #Gets form values that user has typed in:
-    name = params[:name]
-    email = params[:email]
-    telephone = params[:telephone]
-    message = params[:message]
+    name = params["name"]
+    email = params["email"]
+    telephone = params["telephone"]
+    message = params["message"]
 
     #If user has not typed in an email, alert them that
     #they should type one in:

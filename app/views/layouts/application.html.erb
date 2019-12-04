@@ -9,57 +9,14 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <style>
-      .navbar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        width: 100%;
-        background-color: #333;
-        color: white;
-        text-align: center;
-      }
-    </style>
-    <div class="navbar" id="header">
-      <div class="links">
-        <a class="active" href="/home"><%= t('navbar.home')%></a>
-        <a href="/matches"><%= t('matches_and_fixtures')%></a>
-        <a href="/table"><%= t('league_table')%></a>
-        <a href="/batters"><%= t('batters')%></a>
-        <a href="/bowlers"><%= t('bowlers')%></a>
-        <a href="/contact"><%= t('contact_us')%></a>
-      </div>
-    </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <style>
-  .footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-  }
-  </style>
-
-      <% flash.each do |key, value| %>
-      <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>
-      <% end %>
-
+    <%= render 'shared/header' %>
+    <br><br><br><br>
+    <% flash.each do |key, value| %>
+    <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>
+    <% end %>
     <%= yield %>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="footer">
-      <p class="footer">Copyright James Page <%= "#{Time.now.year}" %></p>
-      <br>
-    </div>
+    <br><br><br><br>
+    <%= render 'shared/footer' %>
   </body>
 </html>
