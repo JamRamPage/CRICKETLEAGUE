@@ -27,7 +27,7 @@
        batterRuns = batterStats.sum("runs")[player.name.to_s]
        #The average runs scored per innings (if player has not batted yet, then output "")
        if (matchesPlayed.to_f != 0) then
-          batterAverage = batterRuns.to_f / matchesPlayed.to_f
+          batterAverage = (batterRuns.to_f / matchesPlayed.to_f).round(2)
        else
           batterAverage = ""
        end
