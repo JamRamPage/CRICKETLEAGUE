@@ -1,4 +1,19 @@
-<%= form_with(model: batting_innings, local: true) do |form| %>
+<head>
+<script>
+  $(document).ready(function() {
+    $("#batinnings_form").validate({
+      rules: {
+        "batsman_number": {required: true}
+        "runs": {required: true}
+        "balls": {required: true}
+        "fours": {required: true}
+        "sixes": {required: true}
+      }
+    });
+  });
+</script>
+</head>
+<%= form_with(model: batting_innings, local: true, id: 'batinnings_form') do |form| %>
   <% if batting_innings.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(batting_innings.errors.count, "error") %> prohibited this batting_innings from being saved:</h2>

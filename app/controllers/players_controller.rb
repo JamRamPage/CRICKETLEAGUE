@@ -1,4 +1,5 @@
 class PlayersController < ApplicationController
+  before_action :get_team
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
   # GET /players
@@ -14,7 +15,7 @@ class PlayersController < ApplicationController
 
   # GET /players/new
   def new
-    @player = Player.new
+    @player = @team.players.build
   end
 
   # GET /players/1/edit
@@ -24,11 +25,11 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
-    @player = Player.new(player_params)
+    @player = @team.players.build(player_params)
 
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player, notice: 'Player was successfully created.' }
+        format.html { redirect_to team_path(@team), notice: 'Player was successfully created.' }
         format.json { render :show, status: :created, location: @player }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
-        format.html { redirect_to @player, notice: 'Player was successfully updated.' }
+        format.html { redirect_to team_path(@team), notice: 'Player was successfully updated.' }
         format.json { render :show, status: :ok, location: @player }
       else
         format.html { render :edit }
@@ -56,15 +57,20 @@ class PlayersController < ApplicationController
   def destroy
     @player.destroy
     respond_to do |format|
-      format.html { redirect_to players_url, notice: 'Player was successfully destroyed.' }
+      format.html { redirect_to team_path(@team), notice: 'Player was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+
+    def get_team
+      @team = Team.find(params[:team_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params[:id])
+      @player = @team.players.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

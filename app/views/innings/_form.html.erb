@@ -1,4 +1,17 @@
-<%= form_with(model: [@match, innings], local: true) do |form| %>
+<head>
+<script>
+  $(document).ready(function() {
+    $("#innings_form").validate({
+      rules: {
+        "byes": {required: true}
+        "legbyes": {required: true}
+        "penalties": {required: true}
+      }
+    });
+  });
+</script>
+</head>
+<%= form_with(model: [@match, innings], local: true, id: 'innings_form') do |form| %>
   <% if innings.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(innings.errors.count, "error") %> prohibited this innings from being saved:</h2>

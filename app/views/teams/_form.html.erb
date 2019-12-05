@@ -1,4 +1,19 @@
-<%= form_with(model: team, local: true) do |form| %>
+<head>
+<script>
+  $(document).ready(function() {
+    $("#team_form").validate({
+      rules: {
+        "name": {required: true}
+        "won": {required: true}
+        "drawn": {required: true}
+        "lost": {required: true}
+        "noresult": {required: true}
+      }
+    });
+  });
+</script>
+</head>
+<%= form_with(model: team, local: true, id: 'team_form') do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>
@@ -13,27 +28,27 @@
 
   <div class="field">
     <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= form.text_field "name" %>
   </div>
 
   <div class="field">
     <%= form.label :won %>
-    <%= form.number_field :won %>
+    <%= form.number_field "won" %>
   </div>
 
   <div class="field">
     <%= form.label :drawn %>
-    <%= form.number_field :drawn %>
+    <%= form.number_field "drawn" %>
   </div>
 
   <div class="field">
     <%= form.label :lost %>
-    <%= form.number_field :lost %>
+    <%= form.number_field "lost" %>
   </div>
 
   <div class="field">
     <%= form.label :noresult %>
-    <%= form.number_field :noresult %>
+    <%= form.number_field "noresult" %>
   </div>
 
   <div class="actions">

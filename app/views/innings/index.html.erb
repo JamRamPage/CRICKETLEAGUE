@@ -22,14 +22,13 @@
         <td><%= innings.byes %></td>
         <td><%= innings.legbyes %></td>
         <td><%= innings.penalties %></td>
-        <td><%= link_to 'Show', innings %></td>
-        <td><%= link_to 'Edit', edit_innings_path(innings) %></td>
-        <td><%= link_to 'Destroy', innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', match_innings_path(innings.match, innings) %></td>
+        <td><%= link_to 'Edit', edit_match_innings_path(innings.match, innings) %></td>
+        <td><%= link_to 'Destroy', match_innings_path(innings.match, innings), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<%= link_to 'Back', @match %>
 
 <br>
-
-<%= link_to 'New Innings', new_innings_path %>

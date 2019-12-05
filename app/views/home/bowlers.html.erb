@@ -20,50 +20,52 @@
     <% @bowlers.each do |player| #For each bowler, sorted by the number of wickets they have taken.%>
     <% #The total number of matches the current player has bowled in:
        matchesPlayed = player.matchesBowled.group(:name).where("player_id" => player).count("*")[player.name.to_s]
-       #The bowler stats for the current player
-       bowlerStats = player.bowlingStats.where("player_id" => player)
-       #The total amount of wickets the current player has taken (across all their inningses)
-       bowlerWickets = player.totalWickets
-       #The total runs the current player has conceded whilst bowling:
-       bowlerRuns = player.totalRunsConceded
-       #Bowling average is the number of runs per wicket taken (output 0 or "" accordingly if the current player has not bowled,
-       #or has not taken any wickets:
-       if (bowlerWickets !=0 && bowlerWickets != nil && bowlerWickets != "") then
-          bowlerAverage = (bowlerRuns.to_f / bowlerWickets.to_f).round(2)
-       elsif (bowlerWickets == 0) then
-          bowlerAverage = 0
-       else
-          bowlerAverage = ""
-       end
-       #Works out the bowler's best performance (if they have not bowled yet, output "")
-       #The best performance is worked out like so:
-       # => Take the performance/s (bowling_inningses) with the most amount of wickets
-       # => From these, select the one with the least amount of runs conceded.
-       begin
-          bowlerBestBowling = player.matchesBowled.order(wickets: :desc, runs: :asc).take
-          bowlerBestWickets = bowlerBestBowling.wickets
-          bowlerBestRuns = bowlerBestBowling.runs
-          bestPerformance = ""
-          bestPerformance += bowlerBestWickets.to_s
-          bestPerformance += " for "
-          bestPerformance += bowlerBestRuns.to_s
-       rescue NoMethodError
-          bestPerformance = ""
+       if (matchesPlayed != nil) then #If they've played in no matches, we need not do any more
+         #The bowler stats for the current player
+         bowlerStats = player.bowlingStats.where("player_id" => player)
+         #The total amount of wickets the current player has taken (across all their inningses)
+         bowlerWickets = player.totalWickets
+         #The total runs the current player has conceded whilst bowling:
+         bowlerRuns = player.totalRunsConceded
+         #Bowling average is the number of runs per wicket taken (output 0 or "" accordingly if the current player has not bowled,
+         #or has not taken any wickets:
+         if (bowlerWickets !=0 && bowlerWickets != nil && bowlerWickets != "") then
+            bowlerAverage = (bowlerRuns.to_f / bowlerWickets.to_f).round(2)
+         elsif (bowlerWickets == 0) then
+            bowlerAverage = 0
+         else
+            bowlerAverage = ""
+         end
+         #Works out the bowler's best performance (if they have not bowled yet, output "")
+         #The best performance is worked out like so:
+         # => Take the performance/s (bowling_inningses) with the most amount of wickets
+         # => From these, select the one with the least amount of runs conceded.
+         begin
+            bowlerBestBowling = player.matchesBowled.order(wickets: :desc, runs: :asc).take
+            bowlerBestWickets = bowlerBestBowling.wickets
+            bowlerBestRuns = bowlerBestBowling.runs
+            bestPerformance = ""
+            bestPerformance += bowlerBestWickets.to_s
+            bestPerformance += " for "
+            bestPerformance += bowlerBestRuns.to_s
+         rescue NoMethodError
+            bestPerformance = ""
+         end
        end
        %>
-      <tr>
-        <td><%= player.name %></td>
-        <td><%= player.team.name %></td>
-        <td><%= bowlerWickets%></td>
-        <td><%= bowlerRuns%></td>
-        <td><%= bowlerAverage%></td>
-        <td><%= bestPerformance%></td>
-        <td><%= matchesPlayed%></td>
-        <td><%= player.bowlingstyle %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if (matchesPlayed != nil) then #Display all bowlers who have bowled in at least 1 match %>
+        <tr>
+          <td><%= player.name %></td>
+          <td><%= player.team.name %></td>
+          <td><%= bowlerWickets%></td>
+          <td><%= bowlerRuns%></td>
+          <td><%= bowlerAverage%></td>
+          <td><%= bestPerformance%></td>
+          <td><%= matchesPlayed%></td>
+          <td><%= player.bowlingstyle %></td>
+        </tr>
+      <%end%>
+
     <% end %>
   </tbody>
 </table>

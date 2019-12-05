@@ -1,4 +1,20 @@
-<%= form_with(model: bowling_innings, local: true) do |form| %>
+<head>
+<script>
+  $(document).ready(function() {
+    $("#bowlinnings_form").validate({
+      rules: {
+        "overs": {required: true}
+        "maidens": {required: true}
+        "runs": {required: true}
+        "wickets": {required: true}
+        "no_balls": {required: true}
+        "wides": {required: true}
+      }
+    });
+  });
+</script>
+</head>
+<%= form_with(model: bowling_innings, local: true, id: 'bowlinnings_form') do |form| %>
   <% if bowling_innings.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(bowling_innings.errors.count, "error") %> prohibited this bowling_innings from being saved:</h2>

@@ -1,4 +1,15 @@
-<%= form_with(model: match, local: true) do |form| %>
+<head>
+<script>
+  $(document).ready(function() {
+    $("#match_form").validate({
+      rules: {
+        "stadium": {required: true}
+      }
+    });
+  });
+</script>
+</head>
+<%= form_with(model: match, local: true, id: 'match_form') do |form| %>
   <% if match.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(match.errors.count, "error") %> prohibited this match from being saved:</h2>
@@ -28,7 +39,7 @@
 
   <div class="field">
     <%= form.label :stadium %>
-    <%= form.text_field :stadium %>
+    <%= form.text_field "stadium" %>
   </div>
 
   <div class="actions">

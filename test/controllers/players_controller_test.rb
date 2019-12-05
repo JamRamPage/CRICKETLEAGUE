@@ -3,10 +3,11 @@ require 'test_helper'
 class PlayersControllerTest < ActionDispatch::IntegrationTest
   setup do
     @player = players(:one)
+    @team = teams(:one)
   end
 
   test "should get index" do
-    get players_url
+    get team_player_index_url(@team)
     assert_response :success
 
     assert_select 'title', 'CricketLeagues.com'
@@ -14,38 +15,38 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get new" do
-    get new_player_url
+    get new_team_player_url(@team, @player)
     assert_response :success
   end
 
   test "should create player" do
     assert_difference('Player.count') do
-      post players_url, params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @player.team_id } }
+      post team_players_url(@team), method: :create, params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @player.team_id } }
     end
 
-    assert_redirected_to player_url(Player.last)
+    assert_redirected_to team_player_url(Player.last)
   end
 
   test "should show player" do
-    get player_url(@player)
+    get team_player_url(@team, @player)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_player_url(@player)
+    get edit_team_player_url(@team, @player)
     assert_response :success
   end
 
   test "should update player" do
-    patch player_url(@player), params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @player.team_id } }
-    assert_redirected_to player_url(@player)
+    patch team_player_url(@team, @player), params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @player.team_id } }
+    assert_redirected_to team_path(@team)
   end
 
   test "should destroy player" do
     assert_difference('Player.count', -1) do
-      delete player_url(@player)
+      delete team_player_url(@team, @player)
     end
 
-    assert_redirected_to players_url
+    assert_redirected_to team_url(@team)
   end
 end

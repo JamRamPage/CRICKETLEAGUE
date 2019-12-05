@@ -21,34 +21,35 @@
     <% @batters.each do |player| #For each player, sorted by the number of runs they have scored across all their matches %>
     <% #The total matches that the current player has batted in:
        matchesPlayed = player.matchesBatted.where("player_id" => player).count("*")[player.name.to_s]
-       #The batting statistics for the current player across all matches
-       batterStats = player.battingStats.where("player_id" => player)
-       #The amount of total runs the player has scored over all matches
-       batterRuns = batterStats.sum("runs")[player.name.to_s]
-       #The average runs scored per innings (if player has not batted yet, then output "")
-       if (matchesPlayed.to_f != 0) then
-          batterAverage = (batterRuns.to_f / matchesPlayed.to_f).round(2)
-       else
-          batterAverage = ""
+       if (matchesPlayed != nil) then #If they've played in no matches, we need not do any more
+         #The batting statistics for the current player across all matches
+         batterStats = player.battingStats.where("player_id" => player)
+         #The amount of total runs the player has scored over all matches
+         batterRuns = batterStats.sum("runs")[player.name.to_s]
+         #The average runs scored per innings (if player has not batted yet, then output "")
+         if (matchesPlayed.to_f != 0) then
+            batterAverage = (batterRuns.to_f / matchesPlayed.to_f).round(2)
+         else
+            batterAverage = ""
+         end
+         #Number of 4s, 6s and their high score across all inningses:
+         batterFours = batterStats.sum("fours")[player.name.to_s]
+         batterSixes = batterStats.sum("sixes")[player.name.to_s]
+         batterHighScore = batterStats.maximum("runs")[player.name.to_s]
        end
-       #Number of 4s, 6s and their high score across all inningses:
-       batterFours = batterStats.sum("fours")[player.name.to_s]
-       batterSixes = batterStats.sum("sixes")[player.name.to_s]
-       batterHighScore = batterStats.maximum("runs")[player.name.to_s]
        %>
-      <tr>
-        <td><%= player.name %></td>
-        <td><%= player.team.name %></td>
-        <td><%= player.totalRunsBatted%></td>
-        <td><%= batterAverage%></td>
-        <td><%= batterFours%></td>
-        <td><%= batterSixes%></td>
-        <td><%= batterHighScore%></td>
-        <td><%= matchesPlayed %></td>
-        <td><%= link_to 'Show', player %></td>
-        <td><%= link_to 'Edit', edit_player_path(player) %></td>
-        <td><%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% if (matchesPlayed != nil) then #Display all players who have batted in at least 1 match%>
+        <tr>
+          <td><%= player.name %></td>
+          <td><%= player.team.name %></td>
+          <td><%= player.totalRunsBatted%></td>
+          <td><%= batterAverage%></td>
+          <td><%= batterFours%></td>
+          <td><%= batterSixes%></td>
+          <td><%= batterHighScore%></td>
+          <td><%= matchesPlayed %></td>
+        </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

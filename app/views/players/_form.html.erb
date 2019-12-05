@@ -1,4 +1,15 @@
-<%= form_with(model: player, local: true) do |form| %>
+<head>
+<script>
+  $(document).ready(function() {
+    $("#player_form").validate({
+      rules: {
+        "name": {required: true}
+      }
+    });
+  });
+</script>
+</head>
+<%= form_with(model: [@team, player], local: true, id: 'player_form') do |form| %>
   <% if player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
