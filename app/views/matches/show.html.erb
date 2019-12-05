@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 <h1><%= @match.hometeam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
-<p style="text-align:center"><%= link_to I18n.t('.matches.create_innings'), new_innings_path %></p>
-<p style="text-align:center"><%= link_to I18n.t('.matches.edit_innings'), edit_innings_path %></p>
+<p style="text-align:center"><%= if (@homeinnings == nil) then link_to I18n.t('.matches.create_innings'), new_match_innings_path(@match, @homeinnings) end %></p>
+<p style="text-align:center"><%= if (@homeinnings != nil) then link_to(I18n.t('.matches.edit_innings'), edit_match_innings_path(@match, @homeinnings)) end %></p>
   <table class="center">
     <thead>
       <tr>
@@ -32,7 +32,7 @@
           <td><%= link_to 'Edit', edit_batting_innings_path(batting_innings) %></td>
           <td><%= link_to 'Destroy', batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
-      <% end %>
+      <% end %>homeinnings
       <%
       @homebattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => @match).where("innings.hometeambatted" => true)
       homescorebattedruns = @homebattinginningses.sum("runs")
@@ -89,8 +89,8 @@
     </tbody>
   </table>
 <h1><%= @match.awayteam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
-<p style="text-align:center"><%= link_to I18n.t('.matches.create_innings'), new_innings_path %></p>
-<p style="text-align:center"><%= link_to I18n.t('.matches.edit_innings'), edit_innings_path %></p>
+<p style="text-align:center"><%= if (@awayinnings == nil) then link_to I18n.t('.matches.create_innings'), new_match_innings_path(@match, @awayinnings) end %></p>
+<p style="text-align:center"><%= if (@awayinnings != nil) then link_to(I18n.t('.matches.edit_innings'), edit_match_innings_path(@match, @awayinnings)) end %></p>
   <table class="center">
     <thead>
       <tr>

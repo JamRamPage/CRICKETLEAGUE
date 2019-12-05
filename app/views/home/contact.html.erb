@@ -1,6 +1,17 @@
 <h1><%= I18n.t('.home.contact.title') %></h1>
 <p><%= I18n.t('.home.contact.contact_us') %></p>
-<head><script src="validate_contact_form.js"></script></head>
+<script>
+  $(document).ready(function() {
+  $("#contact_form").validate({
+    rules: {
+      "name": {required: true},
+      "email": {required: true},
+      "telephone": {required: true},
+      "message": {required: true}
+    }
+  });
+});
+</script>
 <%= form_tag request_contact_path, method: 'post', :id => 'contact_form' do %>
   <%= label_tag :name, t('.name') %>
   <%= text_field_tag "name", '', title: t('.enter_name'), size: 50 %>
@@ -10,5 +21,5 @@
   <%= telephone_field_tag "telephone", '', title: t('.enter_telephone') %>
   <%= label_tag :message, t('.message') %>
   <%= text_field_tag "message", '', title: t('.enter_message'), size: 100 %>
-  <%= submit_tag t('.submit') %>
+  <%= submit_tag t('.submit'), :id => 'submit' %>
 <% end %>

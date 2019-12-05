@@ -1,9 +1,10 @@
 Rails.application.routes.draw do
   resources :batting_innings
   resources :bowling_innings
-  resources :innings
   resources :players
-  resources :matches
+  resources :matches do
+    resources :innings
+  end
   resources :teams
   root 'home#home'
   get 'home', to: 'home#home'

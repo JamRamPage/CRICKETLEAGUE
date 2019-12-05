@@ -1,6 +1,6 @@
 class InningsController < ApplicationController
+  before_action :get_match
   before_action :set_innings, only: [:show, :edit, :update, :destroy]
-
   # GET /innings
   # GET /innings.json
   def index
@@ -14,7 +14,7 @@ class InningsController < ApplicationController
 
   # GET /innings/new
   def new
-    @innings = Innings.new
+    @innings = @match.innings.build
   end
 
   # GET /innings/1/edit
@@ -28,7 +28,7 @@ class InningsController < ApplicationController
 
     respond_to do |format|
       if @innings.save
-        format.html { redirect_to @innings, notice: 'Innings was successfully created.' }
+        format.html { redirect_to match_path(@match), notice: 'Innings was successfully created.' }
         format.json { render :show, status: :created, location: @innings }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class InningsController < ApplicationController
   def update
     respond_to do |format|
       if @innings.update(innings_params)
-        format.html { redirect_to @innings, notice: 'Innings was successfully updated.' }
+        format.html { redirect_to match_path(@match), notice: 'Innings was successfully updated.' }
         format.json { render :show, status: :ok, location: @innings }
       else
         format.html { render :edit }
@@ -53,6 +53,10 @@ class InningsController < ApplicationController
 
   # DELETE /innings/1
   # DELETE /innings/1.json
+  # This cannot happen directly by the user from the design of the program.
+  # A user can create a match, but when viewing it to add inningses,
+  # they can only create/edit as appropriate according to if the innings has
+  # already been made or not
   def destroy
     @innings.destroy
     respond_to do |format|
@@ -62,9 +66,13 @@ class InningsController < ApplicationController
   end
 
   private
+
+    def get_match
+      @match = Match.find(params[:match_id])
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_innings
-      @innings = Innings.find(params[:id])
+      @innings = @match.innings.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

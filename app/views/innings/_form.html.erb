@@ -1,4 +1,4 @@
-<%= form_with(model: innings, local: true) do |form| %>
+<%= form_with(model: [@match, innings], local: true) do |form| %>
   <% if innings.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(innings.errors.count, "error") %> prohibited this innings from being saved:</h2>

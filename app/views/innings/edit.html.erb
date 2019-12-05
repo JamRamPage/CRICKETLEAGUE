@@ -2,5 +2,5 @@
 
 <%= render 'form', innings: @innings %>
 
-<%= link_to 'Show', @innings %> |
-<%= link_to 'Back', matches_path %>
+<%= link_to 'Show', [@match, @innings] %> |
+<%= link_to 'Back', match_path(@match) %>

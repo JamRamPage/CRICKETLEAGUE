@@ -3,6 +3,7 @@ require 'test_helper'
 class InningsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @innings = innings(:one)
+    @match = matches(:one)
   end
 
   #test "should get index" do
@@ -14,31 +15,31 @@ class InningsControllerTest < ActionDispatch::IntegrationTest
   #end
 
   test "should get new" do
-    get new_innings_url
+    get new_innings_url(@match)
     assert_response :success
   end
 
   test "should create innings" do
     assert_difference('Innings.count') do
-      post innings_index_url, params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @innings.match_id, penalties: @innings.penalties } }
+      post match_innings_index_url(@match), params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @match.id, penalties: @innings.penalties } }
     end
 
-    assert_redirected_to innings_url(Innings.last)
+    assert_redirected_to match_innings_path(Innings.last)
   end
 
   test "should show innings" do
-    get innings_url(@innings)
+    get match_innings_url[@innings.id, @match.id]
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_innings_url(@innings)
+    get edit_match_innings_url(@match)
     assert_response :success
   end
 
   test "should update innings" do
-    patch innings_url(@innings), params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @innings.match_id, penalties: @innings.penalties } }
-    assert_redirected_to innings_url(@innings)
+    patch innings_url(@innings), params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @match.id, penalties: @innings.penalties } }
+    assert_redirected_to match_innings_path(@innings)
   end
 
   test "should destroy innings" do
@@ -46,6 +47,6 @@ class InningsControllerTest < ActionDispatch::IntegrationTest
       delete innings_url(@innings)
     end
 
-    assert_redirected_to innings_index_url
+    assert_redirected_to match_innings_index_url(@match)
   end
 end

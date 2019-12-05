@@ -40,9 +40,10 @@ class MatchesController < ApplicationController
   # POST /matches.json
   def create
     @match = Match.new(match_params)
-
     respond_to do |format|
       if @match.save
+        @homeinnings = Innings.new(match: @match, hometeambatted: true)
+        @awayinnings = Innings.new(match: @match, hometeambatted: false)
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else
