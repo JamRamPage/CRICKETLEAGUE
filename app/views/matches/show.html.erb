@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 <h1><%= @match.hometeam.name %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
 <p style="text-align:center"><%= if (@homeinnings == nil) then link_to I18n.t('.matches.create_innings'), new_match_innings_path(@match, @homeinnings) end %></p>
 <p style="text-align:center"><%= if (@homeinnings != nil) then link_to(I18n.t('.matches.edit_innings'), edit_match_innings_path(@match, @homeinnings)) end %></p>
