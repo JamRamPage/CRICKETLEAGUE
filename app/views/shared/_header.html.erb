@@ -1,21 +1,11 @@
-<style>
-  .navbar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 100%;
-    background-color: #333;
-    color: white;
-    text-align: center;
-  }
-</style>
+<script src="adjust_nav_bar.js"></script>
 <div class="navbar" id="header">
   <div class="links">
-    <a class="active" href="/home"><%= t('navbar.home')%></a>
-    <a href="/matches"><%= I18n.t('.navbar.matches_and_fixtures')%></a>
-    <a href="/table"><%= I18n.t('.navbar.league_table')%></a>
-    <a href="/batters"><%= I18n.t('.navbar.batters')%></a>
-    <a href="/bowlers"><%= I18n.t('.navbar.bowlers')%></a>
-    <a href="/contact"><%= I18n.t('.navbar.contact_us')%></a>
+    <a href="/home" id="home"><%= t('navbar.home')%></a>
+    <a href="/matches" id="matches"><%= I18n.t('.navbar.matches_and_fixtures')%></a>
+    <a href="/table" id="table"><%= I18n.t('.navbar.league_table')%></a>
+    <a href="/batters" id="batters"><%= I18n.t('.navbar.batters')%></a>
+    <a href="/bowlers" id="bowlers"><%= I18n.t('.navbar.bowlers')%></a>
+    <a href="/contact" id="contact"><%= I18n.t('.navbar.contact_us')%></a>
   </div>
 </div>

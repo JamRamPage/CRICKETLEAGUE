@@ -1,7 +1,19 @@
-
+<style>
+  @media
+only screen and (max-width: 750px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+  td:nth-of-type(1):before { content: "Name:"; }
+  td:nth-of-type(2):before { content: "P:"; }
+  td:nth-of-type(3):before { content: "W:"; }
+  td:nth-of-type(4):before { content: "D:"; }
+  td:nth-of-type(5):before { content: "L:"; }
+  td:nth-of-type(6):before { content: "NR:"; }
+  td:nth-of-type(7):before { content: "Pts:"; }
+}
+</style>
 <h1><%= I18n.t('.teams.heading') %></h1>
 
-<table class="center">
+<table>
   <thead>
     <tr>
       <th><%= I18n.t('.teams.name') %></th>

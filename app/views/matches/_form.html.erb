@@ -27,12 +27,12 @@
     <%= form.date_select :date %>
   </div>
 
-  <div class="field">
+  <div class="field" id="home_team">
     <%= form.label :hometeam_id %>
     <%= form.collection_select :hometeam_id, Team.order(:name), :id, :name, include_blank: false %>
   </div>
 
-  <div class="field">
+  <div class="field" id="away_team">
     <%= form.label :awayteam_id %>
     <%= form.collection_select :awayteam_id, Team.order(:name), :id, :name, include_blank: false %>
   </div>

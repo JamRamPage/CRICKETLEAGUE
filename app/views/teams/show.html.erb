@@ -1,4 +1,17 @@
-<table class="center">
+<style>
+  @media
+  only screen and (max-width: 750px),
+  (min-device-width: 768px) and (max-device-width: 1024px)  {
+  td.Team:nth-of-type(1):before { content: "Name:"; }
+  td.Team:nth-of-type(2):before { content: "P:"; }
+  td.Team:nth-of-type(3):before { content: "W:"; }
+  td.Team:nth-of-type(4):before { content: "D:"; }
+  td.Team:nth-of-type(5):before { content: "L:"; }
+  td.Team:nth-of-type(6):before { content: "NR:"; }
+  td.Team:nth-of-type(7):before { content: "Pts:"; }
+  }
+</style>
+<table>
   <thead>
     <tr>
       <th>Name</th>
@@ -14,51 +27,17 @@
 
   <tbody>
     <tr>
-      <td><%= @team.name %></td>
-      <td><%= @team.played %></td>
-      <td><%= @team.won %></td>
-      <td><%= @team.drawn %></td>
-      <td><%= @team.lost %></td>
-      <td><%= @team.noresult %></td>
-      <td><%= @team.score %></td>
+      <td class="Team"><%= @team.name %></td>
+      <td class="Team"><%= @team.played %></td>
+      <td class="Team"><%= @team.won %></td>
+      <td class="Team"><%= @team.drawn %></td>
+      <td class="Team"><%= @team.lost %></td>
+      <td class="Team"><%= @team.noresult %></td>
+      <td class="Team"><%= @team.score %></td>
     </tr>
   </tbody>
 </table>
-
-<h1>Players</h1>
-
-<table class="center">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Dob</th>
-      <th>Team</th>
-      <th>Role</th>
-      <th>Battinghand</th>
-      <th>Bowlingstyle</th>
-      <th>Domesticteam</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @players.each do |player| %>
-      <tr>
-        <td><%= player.name %></td>
-        <td><%= player.DOB %></td>
-        <td><%= player.team.name %></td>
-        <td><%= player.role %></td>
-        <td><%= player.battinghand %></td>
-        <td><%= player.bowlingstyle %></td>
-        <td><%= player.domesticteam %></td>
-        <td><%= link_to 'Show', team_player_path(@team, player) %></td>
-        <td><%= link_to 'Edit', edit_team_player_path(@team, player) %></td>
-        <td><%= link_to 'Destroy', team_player_path(@team, player), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
+<%= render 'shared/playerList' %>
 
 <p style="text-align:center"><%= link_to 'New Player', new_team_player_path(@team) %></p>
 <%= link_to 'Edit', edit_team_path(@team) %> |

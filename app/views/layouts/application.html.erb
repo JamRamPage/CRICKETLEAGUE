@@ -8,10 +8,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="adjust_nav_bar.js"></script>
   </head>
   <body>
     <%= render 'shared/header' %>
-    <br><br><br><br>
     <% flash.each do |key, value| %>
     <%= content_tag :div, content_tag(:p, value), id: "#{key}" unless value.blank? %>
     <% end %>

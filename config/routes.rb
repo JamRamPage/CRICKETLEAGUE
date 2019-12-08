@@ -16,7 +16,6 @@ Rails.application.routes.draw do
   get 'table', to: 'teams#index'
   get 'batters', to: 'home#batters'
   get 'bowlers', to: 'home#bowlers'
-  get 'player', to: 'player#show'
   post 'request_contact', to: 'home#request_contact'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

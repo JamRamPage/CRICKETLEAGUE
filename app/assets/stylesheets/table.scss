@@ -4,14 +4,48 @@
 table, td, th {
   border: 1px solid black;
   text-align: center;
-  width:60%;
+  width: 60%;
   white-space: nowrap;
+  font-size: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
 table thead th {
   text-align: center;
 }
 
-table.center {
-  margin-left: auto;
-  margin-right: auto;
+/* If the screen width is below 750 pixels, hide the
+   table headers and instead just display the values formatted vertically
+   (similar to the navbar)*/
+@media
+only screen and (max-width: 750px),
+(min-device-width: 768px) and (max-device-width: 1024px)  {
+
+  table, thead, tbody, th, td, tr {
+    display: block;
+    font-size: 100%;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {border: 1px solid black;}
+
+  td {
+    border: none;
+    border-bottom: 1px solid black;
+    position: relative;
+    padding-left: 50%;
+  }
+
+  td:before {
+		position: absolute;
+		left: 0px;
+		width: 45%;
+		padding-right: 40px;
+		white-space: nowrap;
+	}
 }

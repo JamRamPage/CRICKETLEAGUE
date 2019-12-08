@@ -1,0 +1,46 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= I18n.t('.matches.scorecard.bowler') %></th>
+      <th><%= I18n.t('.matches.scorecard.overs') %></th>
+      <th><%= I18n.t('.matches.scorecard.maidens') %></th>
+      <th><%= I18n.t('.matches.scorecard.runs') %></th>
+      <th><%= I18n.t('.matches.scorecard.wickets') %></th>
+      <th><%= I18n.t('.matches.scorecard.econ') %></th>
+      <th><%= I18n.t('.matches.scorecard.no_balls') %></th>
+      <th><%= I18n.t('.matches.scorecard.wides') %></th>
+      <th><%= link_to I18n.t('.matches.add_innings'), new_bowling_innings_path %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% if (locals[:team] == 'Home') then @homebowlinginnings.each do |bowling_innings| %>
+      <tr>
+        <td><%= bowling_innings.Player.name %></td>
+        <td><%= bowling_innings.overs %></td>
+        <td><%= bowling_innings.maidens %></td>
+        <td><%= bowling_innings.runs %></td>
+        <td><%= bowling_innings.wickets %></td>
+        <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
+        <td><%= bowling_innings.no_balls %></td>
+        <td><%= bowling_innings.wides %></td>
+        <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings) %></td>
+        <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end else @awaybowlinginnings.each do |bowling_innings|%>
+      <tr>
+        <td><%= bowling_innings.Player.name %></td>
+        <td><%= bowling_innings.overs %></td>
+        <td><%= bowling_innings.maidens %></td>
+        <td><%= bowling_innings.runs %></td>
+        <td><%= bowling_innings.wickets %></td>
+        <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
+        <td><%= bowling_innings.no_balls %></td>
+        <td><%= bowling_innings.wides %></td>
+        <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings) %></td>
+        <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end end %>
+  </tbody>
+</table>
