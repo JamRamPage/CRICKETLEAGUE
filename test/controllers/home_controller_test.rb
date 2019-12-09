@@ -8,6 +8,10 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'CricketLeagues.com'
     assert_select 'p', 'Copyright James Page 2019'
+    assert_select 'img' do
+      assert_select '[src=?]', 'images/logo.jpg'
+    end
+    assert_select 'p', 'Use the nav bar to select the page to visit.'
   end
 
   test "should get contact" do
@@ -19,6 +23,9 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'Contact Us'
     assert_select 'p', 'Complete the following form to email us.'
+    assert_select 'script' do
+      assert_select '[src=?]', 'validate_contact_form.js'
+    end
   end
 
   test "should post request contact but no email" do
@@ -43,6 +50,15 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'Batters'
+    assert_select 'th', 'Name'
+    assert_select 'th', 'Team'
+    assert_select 'th', 'Runs'
+    assert_select 'th', 'Average'
+    assert_select 'th', '4s'
+    assert_select 'th', '6s'
+    assert_select 'th', 'Highest Score'
+    assert_select 'th', 'Inningses'
+    assert_select 'p', 'Copyright James Page 2019'
   end
 
   test "should get bowlers" do
@@ -51,6 +67,15 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'Bowlers'
+    assert_select 'th', 'Name'
+    assert_select 'th', 'Team'
+    assert_select 'th', 'Wickets'
+    assert_select 'th', 'Runs'
+    assert_select 'th', 'Average'
+    assert_select 'th', 'Best Bowling'
+    assert_select 'th', 'Inningses'
+    assert_select 'th', 'Bowling Style'
+    assert_select 'p', 'Copyright James Page 2019'
   end
 
 end

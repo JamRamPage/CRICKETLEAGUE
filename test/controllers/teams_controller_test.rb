@@ -11,6 +11,14 @@ class TeamsControllerTest < ActionDispatch::IntegrationTest
 
     assert_select 'title', 'CricketLeagues.com'
     assert_select 'h1', 'Teams'
+    assert_select 'p', 'Copyright James Page 2019'
+    assert_select 'th', 'Name'
+    assert_select 'th', 'Played'
+    assert_select 'th', 'Won'
+    assert_select 'th', 'Drawn'
+    assert_select 'th', 'Lost'
+    assert_select 'th', 'No Result'
+    assert_select 'th', 'Points'
   end
 
   test "should get new" do

@@ -1,4 +1,4 @@
-$(window).load(function() {
+$(document).ready(function() {
   var currentPage = window.location.pathname
   if (currentPage == "/home") {
     $("a#home").addClass("active")

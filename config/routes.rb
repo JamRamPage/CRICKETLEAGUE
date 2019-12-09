@@ -2,11 +2,12 @@ Rails.application.routes.draw do
   resources :batting_innings
   resources :bowling_innings
   resources :matches do
-    resources :innings
+    resources :innings, except: [:index, :show]
   end
   resources :teams do
-    resources :players
+    resources :players, except: [:index, :show]
   end
+
   root 'home#home'
   get 'home', to: 'home#home'
   get 'contact', to: 'home#contact'

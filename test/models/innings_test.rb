@@ -16,7 +16,7 @@ class InningsTest < ActiveSupport::TestCase
     innings = Innings.new
 
     innings.match = @match
-    innings.hometeambatted = true
+    innings.hometeambatted = false
     innings.byes = 0
     innings.legbyes = 0
     innings.penalties = 0
