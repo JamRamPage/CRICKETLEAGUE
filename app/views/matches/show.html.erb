@@ -17,9 +17,8 @@
     <%= @match.stadium %>
   </p>
 
-  <%= link_to 'Edit Match', edit_match_path(@match) %> |
-  <%= link_to 'Back', matches_path %> |
-  Accidentally added a wrong innings? <%= link_to 'Click Here', match_innings_index_path(@match) %>
+  <%= link_to 'Edit Match', edit_match_path(@match), :locals => {:type => 'Edit'} %> |
+  <%= link_to 'Back', matches_path %>
 </div>
 <div style="text-align:center">
   Batting Inningses: <%= link_to 'Click Here', batting_innings_index_path %>

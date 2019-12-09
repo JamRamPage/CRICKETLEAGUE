@@ -6,7 +6,7 @@ class Innings < ApplicationRecord
   validates :penalties, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :match, :byes, :legbyes, :penalties, presence: true
   validates_inclusion_of :hometeambatted, :in => [true,false]
-  validates_uniqueness_of :hometeambatted, scope: :match
+  validates_uniqueness_of :hometeambatted, scope: [:id,:match]
 
   def battingteam
     if (hometeambatted == true)

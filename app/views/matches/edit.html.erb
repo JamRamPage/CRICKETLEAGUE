@@ -1,6 +1,9 @@
 <h1>Editing Match</h1>
 
-<%= render 'form', match: @match %>
+<%#If we want to edit the details of a match, we pass this local to ensure that the form elements
+determining the teams are not shown (so they cannot be changed). This is done, because, changing <thead>
+  teams in a match could make the innings, batting_innings and bowling_innings records redundant%>
+<%= render 'form', match: @match, :locals => {:type => 'Edit'} %>
 
 <%= link_to 'Show', @match %> |
 <%= link_to 'Back', matches_path %>

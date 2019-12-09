@@ -25,13 +25,11 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :match_id %>
-    <%= form.collection_select :match_id, Match.order(:date), :id, :matchname, include_blank: false %>
+    <%= form.hidden_field :match_id, value: @innings.match_id %>
   </div>
 
   <div class="field">
-    <%= form.label :hometeambatted %>
-    <%= form.check_box :hometeambatted, checked_value: 1, unchecked_value: 0%>
+    <%= form.hidden_field :hometeambatted, value: @innings.hometeambatted %>
   </div>
 
   <div class="field">

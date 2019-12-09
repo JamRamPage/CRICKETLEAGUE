@@ -30,6 +30,7 @@ only screen and (max-width: 750px),
   <tbody>
     <% @players.each do |player| %>
       <tr>
+        <td><%= player.id %></td>
         <td><%= player.name %></td>
         <td><%= player.DOB %></td>
         <td><%= player.team.name %></td>
