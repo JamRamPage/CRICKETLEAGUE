@@ -7,7 +7,7 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should get index" do
-    get team_player_index_url(@team)
+    get team_players_url(@team)
     assert_response :success
 
     assert_select 'title', 'CricketLeagues.com'
@@ -21,7 +21,7 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
 
   test "should create player" do
     assert_difference('Player.count') do
-      post team_players_url(@team), method: :create, params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @player.team_id } }
+      post team_players_url(@team), params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @team } }
     end
 
     assert_redirected_to team_player_url(Player.last)

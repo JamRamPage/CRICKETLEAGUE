@@ -38,4 +38,8 @@ class BattingInnings < ApplicationRecord
     end
   end
 
+  scope :setFromMatch, -> (match) {joins(:Innings => :match).where("Innings.match_id" => match)}
+  scope :home, -> {where("Innings.hometeambatted" => true).order(:batsman_number)}
+  scope :away, -> {where("Innings.hometeambatted" => false).order(:batsman_number)}
+
 end

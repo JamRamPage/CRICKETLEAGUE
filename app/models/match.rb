@@ -6,13 +6,8 @@ class Match < ApplicationRecord
 
   validates :date, :hometeam, :awayteam, :stadium, presence: true
 
-  #Used to check that the two teams are different: TODO: fix this
-  def validate
-    if (:hometeam == :awayteam)
-      errors.add(:hometeam, "hometeam cannot equal awayteam")
-      errors.add(:awayteam, "awayteam cannot equal hometeam")
-    end
-  end
+  #Used to check that the two teams are different:
+  validates :hometeam, exclusion: {in: lambda{ |match| [match.awayteam]}}
 
   def matchname
     "#{self.date}: #{self.hometeam.name} V #{self.awayteam.name}"

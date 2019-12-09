@@ -21,7 +21,7 @@ class InningsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create innings" do
     assert_difference('Innings.count') do
-      post match_innings_url(@match), method: :create, params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @match.id, penalties: @innings.penalties } }
+      post match_innings_index_url(@match), params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @match, penalties: @innings.penalties } }
     end
 
     assert_redirected_to match_innings_path(Innings.last)

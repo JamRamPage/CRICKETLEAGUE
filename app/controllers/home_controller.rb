@@ -9,7 +9,7 @@ class HomeController < ApplicationController
 
   def bowlers
     #We sort the bowlers according to the total wickets they have taken (again, perhaps later I could add the ability to sort by other params):
-    @bowlers = Player.all.where.not("bowlingstyle" => 0).sort_by {|player| [-player.totalWickets.to_i, if player.totalRunsConceded == "" then 999999999999 else player.totalRunsConceded.to_i end]}
+    @bowlers = Player.bowlers.sort_by {|player| [-player.totalWickets.to_i, if player.totalRunsConceded == "" then 999999999999 else player.totalRunsConceded.to_i end]}
   end
 
   def contact

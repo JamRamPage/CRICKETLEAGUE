@@ -46,6 +46,8 @@ class Player < ApplicationRecord
       ""
     end
   end
+  scope :bowlers, -> {where.not("bowlingstyle" => 0)}
+
   has_many :bowling_innings, dependent: :destroy
   has_many :batting_innings, dependent: :destroy
 end

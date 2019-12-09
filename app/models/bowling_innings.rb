@@ -25,4 +25,8 @@ class BowlingInnings < ApplicationRecord
   def runsconceded
     runs + noballs + wides
   end
+
+  scope :setFromMatch, -> (match) {joins(:Innings => :match).where("Innings.match_id" => match)}
+  scope :home, -> {where("innings.hometeambatted" => true)}
+  scope :away, -> {where("innings.hometeambatted" => false)}
 end

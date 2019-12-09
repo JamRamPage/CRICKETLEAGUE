@@ -14,17 +14,13 @@ class MatchesController < ApplicationController
   def show
     #Fetches the list of batting and bowling inningses for both teams (show will display them
     # in a scorecard form)
-    @battinginnings = BattingInnings.joins(:Innings => :match).where("innings.match_id" => @match)
-    @bowlinginnings = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => @match)
-    @homebattinginnings = @battinginnings.where("innings.hometeambatted" => true).order(:batsman_number)
-    @awaybattinginnings = @battinginnings.where("innings.hometeambatted" => false).order(:batsman_number)
-    @homebowlinginnings = @bowlinginnings.where("innings.hometeambatted" => true)
-    @awaybowlinginnings = @bowlinginnings.where("innings.hometeambatted" => false)
-
+    @homebattinginnings = BattingInnings.setFromMatch(@match).home
+    @awaybattinginnings = BattingInnings.setFromMatch(@match).away
+    @homebowlinginnings = BowlingInnings.setFromMatch(@match).home
+    @awaybowlinginnings = BowlingInnings.setFromMatch(@match).away
     #Used to fetch the amount of extras that each team conceded
-    @homeinnings = Innings.where("innings.match_id" => @match).where("innings.hometeambatted" => true)[0]
-    @awayinnings = Innings.where("innings.match_id" => @match).where("innings.hometeambatted" => false)[0]
-
+    @homeinnings = Innings.setFromMatch(@match).home[0]
+    @awayinnings = Innings.setFromMatch(@match).away[0]
   end
 
   # GET /matches/new

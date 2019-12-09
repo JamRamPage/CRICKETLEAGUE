@@ -3,11 +3,11 @@
 one:
   date: 2019-11-20
   hometeam: one
-  awayteam: one
-  stadium: MyString
+  awayteam: two
+  stadium: Edgbaston
 
 two:
   date: 2019-11-21
-  hometeam: two
+  hometeam: one
   awayteam: two
-  stadium: MyString
+  stadium: Trent Bridge

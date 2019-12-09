@@ -29,12 +29,21 @@ only screen and (max-width: 750px),
 
   <tbody>
     <% @matches.each do |match| %>
-      <% begin
-            @homebattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => true)
-            homescorebattedruns = @homebattinginningses.sum("runs")
-            homescorebowledextras = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => true).sum("wides + no_balls")
-            homescoremiscextras = Innings.joins(:match).where("innings.match_id" => match).where("innings.hometeambatted" => true).sum("byes + legbyes + penalties")
-            homewicketsconceded = @homebattinginningses.where.not(HowOut: 0).where.not(HowOut: 1).count
+      <%
+          begin
+            #Fetches the list of batting and bowling inningses for both teams
+            @homebattinginnings = BattingInnings.setFromMatch(match).home
+            @awaybattinginnings = BattingInnings.setFromMatch(match).away
+            @homebowlinginnings = BowlingInnings.setFromMatch(match).home
+            @awaybowlinginnings = BowlingInnings.setFromMatch(match).away
+            #Used to fetch the amount of extras that each team conceded
+            @homeinnings = Innings.setFromMatch(match).home[0]
+            @awayinnings = Innings.setFromMatch(match).away[0]
+
+            homescorebattedruns = @homebattinginnings.sum("runs")
+            homescorebowledextras = @homebowlinginnings.sum("wides + no_balls")
+            homescoremiscextras = @homeinnings.byes + @homeinnings.legbyes + @homeinnings.penalties
+            homewicketsconceded = @homebattinginnings.where.not(HowOut: 0).where.not(HowOut: 1).count
          rescue NoMethodError
          #Match not Complete yet, (has no inningses belonging to it), so we output zeros
             homescorebattedruns = 0
@@ -43,11 +52,11 @@ only screen and (max-width: 750px),
             homewicketsconceded = 0
          end %>
       <% begin
-            @awaybattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false)
-            awayscorebattedruns = @awaybattinginningses.sum("runs")
-            awayscorebowledextras = BowlingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false).sum("wides + no_balls")
-            awayscoremiscextras = Innings.joins(:match).where("innings.match_id" => match).where("innings.hometeambatted" => false).sum("byes + legbyes + penalties")
-            awaywicketsconceded = @awaybattinginningses.where.not(howout: 0).where.not(howout: 1).count
+            #@awaybattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false)
+            awayscorebattedruns = @awaybattinginnings.sum("runs")
+            awayscorebowledextras = @awaybowlinginnings.sum("wides + no_balls")
+            awayscoremiscextras = @awayinnings.byes + @awayinnings.legbyes + @awayinnings.penalties
+            awaywicketsconceded = @awaybattinginnings.where.not(howout: 0).where.not(howout: 1).count
          rescue NoMethodError
          #Match not Complete yet, (has no inningses belonging to it), so we output zeros
             awayscorebattedruns = 0

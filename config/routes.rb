@@ -1,14 +1,11 @@
 Rails.application.routes.draw do
   resources :batting_innings
   resources :bowling_innings
-  post 'innings', to: 'innings#create'
   resources :matches do
     resources :innings
-    post 'matches(/:id)/innings', to: 'innings#create'
   end
   resources :teams do
     resources :players
-    post 'teams(/:id)/players', to: 'players#create'
   end
   root 'home#home'
   get 'home', to: 'home#home'

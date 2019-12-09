@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_26_174514) do
+ActiveRecord::Schema.define(version: 2019_12_09_134820) do
 
   create_table "batting_innings", force: :cascade do |t|
     t.integer "Innings_id", null: false
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_11_26_174514) do
     t.integer "penalties", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["match_id"], name: "index_innings_on_match_id"
+    t.index [nil, "hometeambatted"], name: "index_Innings_on_match_and_hometeambatted", unique: true
   end
 
   create_table "matches", force: :cascade do |t|
