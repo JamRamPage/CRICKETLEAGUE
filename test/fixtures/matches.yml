@@ -11,3 +11,9 @@ two:
   hometeam: one
   awayteam: two
   stadium: Trent Bridge
+
+three:
+  date: 2019-11-22
+  hometeam: two
+  awayteam: one
+  stadium: Lord's

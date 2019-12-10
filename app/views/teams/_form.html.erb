@@ -1,19 +1,19 @@
 <head>
 <script>
-  $(document).ready(function() {
+  $(document).on('turbolinks:load', function() {
     $("#team_form").validate({
       rules: {
         "name": {required: true}
-        "won": {required: true}
-        "drawn": {required: true}
-        "lost": {required: true}
-        "noresult": {required: true}
+        ".field#won": {required: true}
+        ".field#drawn": {required: true}
+        ".field#lost": {required: true}
+        ".field#noresult": {required: true}
       }
     });
   });
 </script>
 </head>
-<%= form_with(model: team, local: true, id: 'team_form') do |form| %>
+<%= form_with(model: team, local: true, id: "team_form") do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(team.errors.count, "error") %> prohibited this team from being saved:</h2>

@@ -1,14 +1,14 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  name: India
+  name: A
   won: 7
   drawn: 1
   lost: 1
   noresult: 0
 
 two:
-  name: England
+  name: B
   won: 6
   drawn: 0
   lost: 3

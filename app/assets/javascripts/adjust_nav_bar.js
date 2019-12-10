@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load', function() {
   var currentPage = window.location.pathname
   if (currentPage == "/home") {
     $("a#home").addClass("active")

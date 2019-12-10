@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
   $("#contact_form").validate({
     rules: {
       "name": {required: true},

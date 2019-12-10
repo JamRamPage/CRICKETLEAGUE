@@ -9,7 +9,7 @@ one:
 
 two:
   match: two
-  hometeambatted: false
+  hometeambatted: true
   byes: 1
   legbyes: 1
   penalties: 1
