@@ -38,6 +38,7 @@
   <%= @batting_innings.howout %>
 </p>
 
+<%# The next two fields have handlers in case they are empty (eg if a batsman was not out)%>
 <p>
   <strong>Bowler:</strong>
   <%= if (@batting_innings.bowler != nil) then @batting_innings.bowler.name end %>

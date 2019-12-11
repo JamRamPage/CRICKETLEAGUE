@@ -21,6 +21,9 @@ class Team < ApplicationRecord
     won + drawn + lost + noresult
   end
 
+  #A team can be the hometeam or awayteam in many different matches,
+  #thus we deal with the dependent: :destroy separately (if we destroy a team,
+  #ALL matches that they played in (either as home or away) are removed.)
   has_many :homematches, foreign_key: "hometeam_id", dependent: :destroy, class_name: "Match"
   has_many :awaymatches, foreign_key: "awayteam_id", dependent: :destroy, class_name: "Match"
 

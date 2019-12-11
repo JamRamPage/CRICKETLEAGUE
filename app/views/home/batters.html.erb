@@ -1,3 +1,9 @@
+<%# The below has to be defined here, since the table headers
+are unique to the current table (in this case, batters)
+.
+
+This defines the table headers for when the screen width
+is compressed below 750 pixels%>
 <style>
   @media
 only screen and (max-width: 750px),
@@ -31,9 +37,9 @@ only screen and (max-width: 750px),
 
   <tbody>
     <% @batters.each do |player| #For each player, sorted by the number of runs they have scored across all their matches %>
-    <% #The total matches that the current player has batted in:
+    <% #The total number of matches that the current player has batted in:
        matchesPlayed = player.matchesBatted.where("player_id" => player).count("*")[player.name.to_s]
-       if (matchesPlayed != nil) then #If they've played in no matches, we need not do any more
+       if (matchesPlayed != nil) then #If they've played in no matches, we need not do any more processing
          #The batting statistics for the current player across all matches
          batterStats = player.battingStats.where("player_id" => player)
          #The amount of total runs the player has scored over all matches

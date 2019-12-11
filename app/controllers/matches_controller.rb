@@ -18,7 +18,7 @@ class MatchesController < ApplicationController
     @awaybattinginnings = BattingInnings.setFromMatch(@match).away
     @homebowlinginnings = BowlingInnings.setFromMatch(@match).home
     @awaybowlinginnings = BowlingInnings.setFromMatch(@match).away
-    #Used to fetch the amount of extras that each team conceded
+    #Fetches the two inningses (home and away), used to fetch the amount of extras that each team conceded
     @homeinnings = Innings.setFromMatch(@match).home[0]
     @awayinnings = Innings.setFromMatch(@match).away[0]
   end
@@ -38,8 +38,6 @@ class MatchesController < ApplicationController
     @match = Match.new(match_params)
     respond_to do |format|
       if @match.save
-        @homeinnings = Innings.new(match: @match, hometeambatted: true)
-        @awayinnings = Innings.new(match: @match, hometeambatted: false)
         format.html { redirect_to @match, notice: 'Match was successfully created.' }
         format.json { render :show, status: :created, location: @match }
       else

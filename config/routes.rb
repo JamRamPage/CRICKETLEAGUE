@@ -2,9 +2,13 @@ Rails.application.routes.draw do
   resources :batting_innings
   resources :bowling_innings
   resources :matches do
+    #We don't need to index or show innings since the details
+    #of each innings are shown in the match show page
     resources :innings, except: [:index, :show]
   end
   resources :teams do
+    #likewise, but here the details of each player are shown in
+    #the team show page
     resources :players, except: [:index, :show]
   end
 

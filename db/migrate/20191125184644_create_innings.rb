@@ -1,7 +1,7 @@
 class CreateInnings < ActiveRecord::Migration[5.2]
   def change
     create_table :innings do |t|
-      t.belongs_to :match, index: true, foreign_key: true
+      t.belongs_to :match, index: true, foreign_key: true, null: false
       t.boolean :hometeambatted, null: false
       t.integer :byes, null: false, default: 0
       t.integer :legbyes, null: false, default: 0

@@ -1,3 +1,9 @@
+<%# The below has to be defined here, since the table headers
+are unique to the current table
+.
+
+This defines the table headers for when the screen width
+is compressed below 750 pixels%>
 <style>
   @media
 only screen and (max-width: 750px),
@@ -29,7 +35,7 @@ only screen and (max-width: 750px),
   </thead>
 
   <tbody>
-    <% @bowlers.each do |player| #For each bowler, sorted by the number of wickets they have taken.%>
+    <% @bowlers.each do |player| #For each bowler, sorted by the number of wickets they have taken descending (then by the number of runs they have conceded ascending).%>
     <% #The total number of matches the current player has bowled in:
        matchesPlayed = player.matchesBowled.group(:name).where("player_id" => player).count("*")[player.name.to_s]
        if (matchesPlayed != nil) then #If they've played in no matches, we need not do any more
@@ -65,7 +71,7 @@ only screen and (max-width: 750px),
          end
        end
        %>
-      <% if (matchesPlayed != nil) then #Display all bowlers who have bowled in at least 1 match %>
+      <% if (matchesPlayed != nil) then #Display bowler if they have bowled in at least 1 match %>
         <tr>
           <td><%= player.name %></td>
           <td><%= player.team.name %></td>

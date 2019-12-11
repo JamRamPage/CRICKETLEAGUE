@@ -1,19 +1,4 @@
-<head>
-<script>
-  $(document).ready(function() {
-    $("#bowlinnings_form").validate({
-      rules: {
-        "overs": {required: true}
-        "maidens": {required: true}
-        "runs": {required: true}
-        "wickets": {required: true}
-        "no_balls": {required: true}
-        "wides": {required: true}
-      }
-    });
-  });
-</script>
-</head>
+<script src="validate_bowling_innings_form.js"></script>
 <%= form_with(model: bowling_innings, local: true, id: 'bowlinnings_form') do |form| %>
   <% if bowling_innings.errors.any? %>
     <div id="error_explanation">

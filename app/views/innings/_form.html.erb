@@ -1,16 +1,4 @@
-<head>
-<script>
-  $(document).ready(function() {
-    $("#innings_form").validate({
-      rules: {
-        "byes": {required: true}
-        "legbyes": {required: true}
-        "penalties": {required: true}
-      }
-    });
-  });
-</script>
-</head>
+<script src="validate_innings_form.js"></script>
 <%= form_with(model: [@match, innings], local: true, id: 'innings_form') do |form| %>
   <% if innings.errors.any? %>
     <div id="error_explanation">
@@ -25,10 +13,17 @@
   <% end %>
 
   <div class="field">
+    <%#We should show the match name that the innings belongs to,
+       but not allow the user to change it, since this will be passed
+       into this view depending on which button the user clicked in <thead>
+      match show page%>
+    <%= @match.matchname %>
     <%= form.hidden_field :match_id, value: @innings.match_id %>
   </div>
 
   <div class="field">
+    <%#Likewise, this value is passed through from match show page%>
+    <%= @innings.battingteam + " batted" %>
     <%= form.hidden_field :hometeambatted, value: @innings.hometeambatted %>
   </div>
 

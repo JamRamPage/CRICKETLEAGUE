@@ -1,18 +1,4 @@
-<head>
-<script>
-  $(document).on('turbolinks:load', function() {
-    $("#team_form").validate({
-      rules: {
-        "name": {required: true}
-        ".field#won": {required: true}
-        ".field#drawn": {required: true}
-        ".field#lost": {required: true}
-        ".field#noresult": {required: true}
-      }
-    });
-  });
-</script>
-</head>
+<script src="validate_team_form.js"></script>
 <%= form_with(model: team, local: true, id: "team_form") do |form| %>
   <% if team.errors.any? %>
     <div id="error_explanation">

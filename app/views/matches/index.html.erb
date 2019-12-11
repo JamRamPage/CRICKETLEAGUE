@@ -31,12 +31,12 @@ only screen and (max-width: 750px),
     <% @matches.each do |match| %>
       <%
           begin
-            #Fetches the list of batting and bowling inningses for both teams
+            #Fetches the list of batting and bowling inningses for both teams IN THE CURRENT MATCH
             @homebattinginnings = BattingInnings.setFromMatch(match).home
             @awaybattinginnings = BattingInnings.setFromMatch(match).away
             @homebowlinginnings = BowlingInnings.setFromMatch(match).home
             @awaybowlinginnings = BowlingInnings.setFromMatch(match).away
-            #Used to fetch the amount of extras that each team conceded
+            #Used to fetch the amount of extras (byes, leg byes and penalties) that each team conceded
             @homeinnings = Innings.setFromMatch(match).home[0]
             @awayinnings = Innings.setFromMatch(match).away[0]
 
@@ -52,7 +52,6 @@ only screen and (max-width: 750px),
             homewicketsconceded = 0
          end %>
       <% begin
-            #@awaybattinginningses = BattingInnings.joins(:Innings => :match).where("innings.match_id" => match).where("innings.hometeambatted" => false)
             awayscorebattedruns = @awaybattinginnings.sum("runs")
             awayscorebowledextras = @awaybowlinginnings.sum("wides + no_balls")
             awayscoremiscextras = @awayinnings.byes + @awayinnings.legbyes + @awayinnings.penalties

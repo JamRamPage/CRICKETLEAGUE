@@ -1,3 +1,5 @@
+<%#Depending on which team's results (home/away) is being displayed, show
+the appropraite title and links to make/edit each innings%>
 <h1><%= if (locals[:team] == 'Home') then @match.hometeam.name else @match.awayteam.name end %> <%= I18n.t('.matches.scorecard.innings_title') %> </h1>
 <p style="text-align:center"><%= if locals[:team] == 'Home' && @homeinnings == nil then link_to I18n.t('.matches.create_innings'), new_match_innings_path(@match, @homeinnings,hometeambatted: true) end %></p>
 <p style="text-align:center"><%= if locals[:team] == 'Away' && @awayinnings == nil then link_to I18n.t('.matches.create_innings'), new_match_innings_path(@match, @awayinnings,hometeambatted: false) end %></p>
@@ -14,12 +16,18 @@
         <th><%= I18n.t('.matches.scorecard.fours') %></th>
         <th><%= I18n.t('.matches.scorecard.sixes') %></th>
         <th><%= I18n.t('.matches.scorecard.strike_rate') %></th>
+        <%# We don't want the user to be able to add a new batting innings if the current "Innings" doesn't
+        exist yet!%>
         <th><%= if (locals[:team] == 'Home' && @homeinnings != nil) then link_to I18n.t('.matches.add_innings'), new_batting_innings_path(Innings_id: @homeinnings.id) end%></th>
         <th><%= if (locals[:team] == 'Away' && @awayinnings != nil) then link_to I18n.t('.matches.add_innings'), new_batting_innings_path(Innings_id: @awayinnings.id) end%></th>
         <th colspan="3"></th>
       </tr>
     </thead>
     <%
+    #Makes the current innings, batting_innings and bowling_innings objects
+    #dependent on whether the home/away team is playing
+    #(Helps to prevent repeating ourself in the code below
+    #this if statement)
     if (locals[:team] == 'Home') then
       @innings = @homeinnings
       @battinginningses = @homebattinginnings
@@ -66,6 +74,10 @@
       </tr>
       <tr>
         <td><strong>Total:</strong></td>
+        <%# A team's total runs is the total runs all the batters got, plus any extras
+        that the bowlers conceded (wides and no balls),
+        plus any extras that aren't counted against the bowler
+        (byes, leg byes and penalty runs)%>
         <td></td><td><%= battedruns + bowledextras + miscextras%><%= if (wicketsconceded < 10) then '/' end %><%=if (wicketsconceded < 10) then wicketsconceded end %> (<%= overs%> Overs, RR: <%= ((battedruns + bowledextras + miscextras).to_f / overs.to_f).round(2)%>)</td>
       </tr>
     </tbody>

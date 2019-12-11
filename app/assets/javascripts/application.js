@@ -16,6 +16,4 @@
 //= require turbolinks
 //= require jquery
 //= require jquery.validate
-//= require validate_contact_form.js
-//= require adjust_nav_bar.js
 //= require_tree .

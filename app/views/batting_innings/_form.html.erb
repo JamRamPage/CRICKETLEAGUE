@@ -1,18 +1,4 @@
-<head>
-<script>
-  $(document).ready(function() {
-    $("#batinnings_form").validate({
-      rules: {
-        "batsman_number": {required: true}
-        "runs": {required: true}
-        "balls": {required: true}
-        "fours": {required: true}
-        "sixes": {required: true}
-      }
-    });
-  });
-</script>
-</head>
+<script src="validate_batting_innings_form.js"></script>
 <%= form_with(model: batting_innings, local: true, id: 'batinnings_form') do |form| %>
   <% if batting_innings.errors.any? %>
     <div id="error_explanation">

@@ -2,29 +2,19 @@ class PlayersController < ApplicationController
   before_action :get_team
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
-  # GET /players
-  # GET /players.json
-  def index
-    @players = Player.all
-  end
-
-  # GET /players/1
-  # GET /players/1.json
-  def show
-  end
-
-  # GET /players/new
+  # GET /teams/(:id)/players/new
   def new
     @player = @team.players.build
   end
 
-  # GET /players/1/edit
+  # GET /teams/(:id)/players/1/edit
   def edit
   end
 
-  # POST /players
+  # POST /teams/(:id)/players
   # POST /players.json
   def create
+    #Makes a player associated with a given team
     @player = @team.players.build(player_params)
 
     respond_to do |format|
@@ -38,7 +28,7 @@ class PlayersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /players/1
+  # PATCH/PUT /teams/(:id)/players/1
   # PATCH/PUT /players/1.json
   def update
     respond_to do |format|
@@ -52,7 +42,7 @@ class PlayersController < ApplicationController
     end
   end
 
-  # DELETE /players/1
+  # DELETE /teams/(:id)/players/1
   # DELETE /players/1.json
   def destroy
     @player.destroy
@@ -64,6 +54,7 @@ class PlayersController < ApplicationController
 
   private
 
+    #Returns the team a player is associated with
     def get_team
       @team = Team.find(params[:team_id])
     end
@@ -75,6 +66,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :DOB, :team_id, :role, :battinghand, :bowlingstyle, :domesticteam)
+      params.require(:player).permit(:id, :team_id, :name, :DOB, :role, :battinghand, :bowlingstyle, :domesticteam)
     end
 end

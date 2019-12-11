@@ -1,19 +1,20 @@
 class Player < ApplicationRecord
   belongs_to :team
-  #Defines enumerations for a player's roles in a team:
+  #A player's roles in a team:
   enum role: [:Batter, :Bowler, :WicketKeeper, :AllRounder]
   enum battinghand: [:Right, :Left]
   #NA used for players who don't bowl (wicket keepers and some batsmen)
-  # Abbreviations used for bowling styles, might change later:
+  # Abbreviations used for bowling styles.
   enum bowlingstyle: [:NA, :RF, :RFM, :RMF, :RM, :LF, :LFM, :LMF, :LM, :OB, :LB, :SLA, :SLC]
+
   validates :name, :DOB, :team, :role, :battinghand, :bowlingstyle, presence: true
 
-
-  #Works out the batting statistics for every batter (used in methods below):
+  #Works out the batting statistics for every player who has batted (ie has a
+  # BattingInnings object relating to them)(used in methods below):
   def battingStats
     BattingInnings.joins(:Player).select("name, SUM(runs), SUM(fours), SUM(sixes), MAX(runs)").group(:name)
   end
-  #Works out the total inningses each player batted in:
+  #Returns all the BattingInningses a player batted in:
   def matchesBatted
     BattingInnings.joins(:Player).group(:name)
   end
@@ -22,7 +23,8 @@ class Player < ApplicationRecord
     self.battingStats.sum("runs")[self.name.to_s]
   end
 
-  #Works out the bowling statistics for every bowler (used in methods below):
+  #Works out the bowling statistics for every player who has Bowled
+  # in at least 1 innings. (used in methods below):
   def bowlingStats
     BowlingInnings.joins(:Player).select("name, SUM(wickets), SUM(runs)").group(:name)
   end
@@ -46,8 +48,11 @@ class Player < ApplicationRecord
       ""
     end
   end
+  #Returns all bowlers from a list of players (note, players
+  #with the role of batsman still sometimes bowl)
   scope :bowlers, -> {where.not("bowlingstyle" => 0)}
 
+  #A player can bowl or bat in many Inningses
   has_many :bowling_innings, dependent: :destroy
   has_many :batting_innings, dependent: :destroy
 end

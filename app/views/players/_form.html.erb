@@ -1,14 +1,4 @@
-<head>
-<script>
-  $(document).ready(function() {
-    $("#player_form").validate({
-      rules: {
-        "name": {required: true}
-      }
-    });
-  });
-</script>
-</head>
+<script src="validate_player_form.js"></script>
 <%= form_with(model: [@team, player], local: true, id: 'player_form') do |form| %>
   <% if player.errors.any? %>
     <div id="error_explanation">
@@ -23,6 +13,11 @@
   <% end %>
 
   <div class="field">
+    <%= @team.name %>
+    <%= form.hidden_field :team_id, value: @team.id %>
+  </div>
+
+  <div class="field">
     <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
@@ -30,11 +25,6 @@
   <div class="field">
     <%= form.label :DOB %>
     <%= form.date_select :DOB, start_year: Time.now.year - 100, end_year: Time.now.year %>
-  </div>
-
-  <div class="field">
-    <%= form.label :team_id %>
-    <%= form.collection_select :team_id, Team.order(:name), :id, :name, include_blank: false %>
   </div>
 
   <div class="field">

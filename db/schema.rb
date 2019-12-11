@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_12_09_161549) do
   end
 
   create_table "innings", force: :cascade do |t|
-    t.integer "match_id"
+    t.integer "match_id", null: false
     t.boolean "hometeambatted", null: false
     t.integer "byes", default: 0, null: false
     t.integer "legbyes", default: 0, null: false

@@ -1,29 +1,20 @@
 class InningsController < ApplicationController
   before_action :get_match
   before_action :set_innings, only: [:show, :edit, :update, :destroy]
-  # GET /innings
-  # GET /innings.json
-  def index
-    @innings = Innings.all
-  end
 
-  # GET /innings/1
-  # GET /innings/1.json
-  def show
-  end
-
-  # GET /innings/new
+  # GET /matches/(:id)/innings/new
   def new
     @innings = @match.innings.build
   end
 
-  # GET /innings/1/edit
+  # GET /matches/(:id)/innings/(:id)/edit
   def edit
   end
 
-  # POST /innings
+  # POST /matches/(:id)/innings
   # POST /innings.json
   def create
+    #Makes an innings associated with a given match
     @innings = Innings.new(innings_params)
 
     respond_to do |format|
@@ -37,8 +28,8 @@ class InningsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /innings/1
-  # PATCH/PUT /innings/1.json
+  # PATCH/PUT /matches/(:id)/innings/(:id)
+  # PATCH/PUT /innings/(:id).json
   def update
     respond_to do |format|
       if @innings.update(innings_params)
@@ -58,6 +49,7 @@ class InningsController < ApplicationController
   # they can only create/edit as appropriate according to if the innings has
   # already been made or not
   def destroy
+    #Called automatically when a match is destroyed
     @innings.destroy
     respond_to do |format|
       format.html { redirect_to match_path(@match), notice: 'Innings was successfully destroyed.' }
@@ -67,6 +59,7 @@ class InningsController < ApplicationController
 
   private
 
+    #Returns the match that the innings corresponds to:
     def get_match
       @match = Match.find(params[:match_id])
     end
@@ -77,6 +70,6 @@ class InningsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def innings_params
-      params.require(:innings).permit(:match_id, :hometeambatted, :byes, :legbyes, :penalties)
+      params.require(:innings).permit(:id, :match_id, :hometeambatted, :byes, :legbyes, :penalties)
     end
 end

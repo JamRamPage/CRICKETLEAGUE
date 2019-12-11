@@ -1,6 +1,6 @@
 /*Used to style all tables. Bordered with black lines,
   text is centered and it is made to be a set width of the
-  screen to support different devices */
+  screen*/
 table, td, th {
   border: 1px solid black;
   text-align: center;
@@ -21,19 +21,19 @@ table thead th {
 only screen and (max-width: 750px),
 (min-device-width: 768px) and (max-device-width: 1024px)  {
 
+  /** Display table elements vertically */
   table, thead, tbody, th, td, tr {
     display: block;
-    font-size: 100%;
   }
-
+  /** Table headers are moved way off the screen, so we can't see them
+  (the td:before changes this later)*/
   thead tr {
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
 
-  tr {border: 1px solid black;}
-
+  /** Each table value (eg team's name)*/
   td {
     border: none;
     border-bottom: 1px solid black;
@@ -41,6 +41,7 @@ only screen and (max-width: 750px),
     padding-left: 50%;
   }
 
+  /** Each table's header (eg "Team Name")*/
   td:before {
 		position: absolute;
 		left: 0px;

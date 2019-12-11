@@ -3,12 +3,12 @@ class HomeController < ApplicationController
   end
 
   def batters
-    #We sort the batters according to the total runs they have scored (perhaps later I could add the ability to sort by other params)
+    #We sort the batters according to the total runs they have scored
     @batters = Player.all.sort {|player1, player2| player2.totalRunsBatted.to_i <=> player1.totalRunsBatted.to_i}
   end
 
   def bowlers
-    #We sort the bowlers according to the total wickets they have taken (again, perhaps later I could add the ability to sort by other params):
+    #We sort the bowlers according to the total wickets they have taken
     @bowlers = Player.bowlers.sort_by {|player| [-player.totalWickets.to_i, if player.totalRunsConceded == "" then 999999999999 else player.totalRunsConceded.to_i end]}
   end
 

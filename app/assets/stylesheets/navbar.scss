@@ -1,4 +1,5 @@
-/* Style the nav bar itself */
+/* Style the navigation bar itself - It covers the whole screen
+width. */
 .navbar {
   position: fixed;
   left: 0;
@@ -8,7 +9,7 @@
   color: white;
   text-align: center;
 }
-/* Style the links inside the navigation bar */
+/* Style the links inside the navigation bar. */
 .navbar a {
   float: left;
   color: #f2f2f2;
@@ -18,24 +19,24 @@
   font-size: 17px;
 }
 
-/* Pads the top of the page so that it's below the nav bar */
+/* Pads the top of the page so that it's always below the nav bar */
 .main {
     margin-top: 5%;
 }
 
-
-/* Change the colour of links when the mouse moves over them*/
+/* Changes the colour of links when the mouse moves over them*/
 .navbar a:hover {
   background-color: #8ceeff;
   color: black;
 }
 
-/* Add a colour to the active/current link */
+/* Adds a colour to the active/current link (see adjust_nav_bar.js for usage) */
 .navbar a.active {
   background-color: #4CAF50;
   color: white;
 }
 
+/* When the screen width is below 750 pixels wide, display the navigation bar links vertically */
 @media screen and (max-width: 750px) {
   .navbar a {
     float: none;

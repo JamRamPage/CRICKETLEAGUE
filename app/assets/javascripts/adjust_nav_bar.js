@@ -1,3 +1,5 @@
+//Highlights the appropriate page in the nav bar based
+//on which page is currently open:
 $(document).on('turbolinks:load', function() {
   var currentPage = window.location.pathname
   if (currentPage == "/home") {

@@ -1,14 +1,4 @@
-<head>
-<script>
-  $(document).ready(function() {
-    $("#match_form").validate({
-      rules: {
-        "stadium": {required: true}
-      }
-    });
-  });
-</script>
-</head>
+<script src="validate_match_form.js"></script>
 <%= form_with(model: match, local: true, id: 'match_form') do |form| %>
   <% if match.errors.any? %>
     <div id="error_explanation">

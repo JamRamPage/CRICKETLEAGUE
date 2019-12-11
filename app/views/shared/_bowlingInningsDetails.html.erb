@@ -9,8 +9,10 @@
       <th><%= I18n.t('.matches.scorecard.econ') %></th>
       <th><%= I18n.t('.matches.scorecard.no_balls') %></th>
       <th><%= I18n.t('.matches.scorecard.wides') %></th>
-      <th><%= if (locals[:team] == 'Home') then link_to I18n.t('.matches.add_innings'), new_bowling_innings_path(Innings_id: @homeinnings) end%></th>
-      <th><%= if (locals[:team] == 'Away') then link_to I18n.t('.matches.add_innings'), new_bowling_innings_path(Innings_id: @awayinnings) end%></th>
+      <%# Similarly to batting_innings, we don't want a user to be able to add a new
+      bowling innings object unless the "Innings" for this team has already been created!%>
+      <th><%= if (locals[:team] == 'Home' && @homeinnings != nil) then link_to I18n.t('.matches.add_innings'), new_bowling_innings_path(Innings_id: @homeinnings) end%></th>
+      <th><%= if (locals[:team] == 'Away' && @awayinnings != nil) then link_to I18n.t('.matches.add_innings'), new_bowling_innings_path(Innings_id: @awayinnings) end%></th>
     </tr>
   </thead>
   <% if (locals[:team] == 'Home') then
