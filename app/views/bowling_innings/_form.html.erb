@@ -13,13 +13,19 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :Innings_id %>
-    <%= form.collection_select :Innings_id, Innings.order(:innings_name), :id, :innings_name, include_blank: false %>
+    <%= if (@bowling_innings.Innings_id != nil) then Innings.where("id" => @bowling_innings.Innings_id).take.innings_name end%>
+    <%= form.hidden_field :Innings_id, value: @bowling_innings.Innings_id %>
   </div>
 
   <div class="field">
     <%= form.label :Player_id %>
-    <%= form.collection_select :Player_id, Player.where('bowlingstyle != 0').order(:name), :id, :name, include_blank: false %>
+    <%= if !(params[:edit] == "true" || @players == nil)
+        form.collection_select :Player_id, @players.order(:id), :id, :name, include_blank: false
+      elsif (params[:edit]=="true")
+      form.hidden_field :Player_id, value: @bowling_innings.Player_id
+      else
+      form.collection_select :Player_id, Player.all.order(:id), :id, :name, include_blank: false
+      end %>
   </div>
 
   <div class="field">

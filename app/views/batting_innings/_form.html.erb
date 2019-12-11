@@ -13,13 +13,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :Innings_id %>
-    <%= form.collection_select :Innings_id, Innings.order(:innings_name), :id, :innings_name, include_blank: false %>
+    <%= if (@batting_innings.Innings_id != nil) then Innings.where("id" => @batting_innings.Innings_id).take.innings_name end%>
+    <%= form.hidden_field :Innings_id, value: @batting_innings.Innings_id %>
   </div>
 
   <div class="field">
+    <%# We only show the players relevant to this innings (ie the ones in this team that is batting:)%>
     <%= form.label :Player_id %>
-    <%= form.collection_select :Player_id, Player.order(:name), :id, :name, include_blank: false %>
+    <%= if !(params[:edit] == "true" || @players == nil)
+        form.collection_select :Player_id, @players.order(:id), :id, :name, include_blank: false
+      elsif (params[:edit] == "true")
+      form.hidden_field :Player_id, value: @batting_innings.Player_id
+      else
+      form.collection_select :Player_id, Player.all.order(:id), :id, :name, include_blank: false
+      end
+      %>
   </div>
 
   <div class="field">

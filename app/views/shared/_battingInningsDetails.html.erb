@@ -18,8 +18,8 @@ the appropraite title and links to make/edit each innings%>
         <th><%= I18n.t('.matches.scorecard.strike_rate') %></th>
         <%# We don't want the user to be able to add a new batting innings if the current "Innings" doesn't
         exist yet!%>
-        <th><%= if (locals[:team] == 'Home' && @homeinnings != nil) then link_to I18n.t('.matches.add_innings'), new_batting_innings_path(Innings_id: @homeinnings.id) end%></th>
-        <th><%= if (locals[:team] == 'Away' && @awayinnings != nil) then link_to I18n.t('.matches.add_innings'), new_batting_innings_path(Innings_id: @awayinnings.id) end%></th>
+        <th><%= if (locals[:team] == 'Home' && @homeinnings != nil) then link_to I18n.t('.matches.add_innings'), new_batting_innings_path(Innings_id: @homeinnings.id, hometeambatted: true) end%></th>
+        <th><%= if (locals[:team] == 'Away' && @awayinnings != nil) then link_to I18n.t('.matches.add_innings'), new_batting_innings_path(Innings_id: @awayinnings.id, hometeambatted: false) end%></th>
         <th colspan="3"></th>
       </tr>
     </thead>
@@ -64,7 +64,7 @@ the appropraite title and links to make/edit each innings%>
           <td><%= batting_innings.fours %></td>
           <td><%= batting_innings.sixes %></td>
           <td><%= ((batting_innings.runs.to_f / batting_innings.balls.to_f) * 100).round(2) %></td>
-          <td><%= link_to 'Edit', edit_batting_innings_path(batting_innings) %></td>
+          <td><%= link_to 'Edit', edit_batting_innings_path(batting_innings, edit: true) %></td>
           <td><%= link_to 'Destroy', batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

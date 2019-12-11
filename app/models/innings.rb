@@ -29,8 +29,6 @@ class Innings < ApplicationRecord
   scope :home, -> {where("hometeambatted" => true)}
   scope :away, -> {where("hometeambatted" => false)}
 
-
-
   #An innings has up to 11 batting_inningses and bowling inningses
   has_many :bowling_innings, dependent: :destroy
   has_many :batting_innings, dependent: :destroy

@@ -1,5 +1,13 @@
 <h1>New Batting Innings</h1>
 <% @batting_innings.Innings_id = params[:Innings_id] %>
+<%# Finds the players associated with the given innings. (Only these are shown in the drop down menu)%>
+<%
+@hometeambatted = params[:hometeambatted]
+if @hometeambatted == "true"
+  @players = Player.joins("INNER JOIN teams INNER JOIN matches INNER JOIN innings ON players.team_id = teams.id AND teams.id = matches.hometeam_id AND matches.id = innings.match_id").where("innings.id" => @batting_innings.Innings_id)
+else
+  @players = Player.joins("INNER JOIN teams INNER JOIN matches INNER JOIN innings ON players.team_id = teams.id AND teams.id = matches.awayteam_id AND matches.id = innings.match_id").where("innings.id" => @batting_innings.Innings_id)
+end
+%>
 <%= render 'form', batting_innings: @batting_innings %>
-
 <%= link_to 'Back', matches_path %>

@@ -5,14 +5,6 @@ class BattingInningsControllerTest < ActionDispatch::IntegrationTest
     @batting_innings = batting_innings(:one)
   end
 
-  #test "should get index" do
-  #  get batting_innings_index_url
-  #  assert_response :success
-#
-  #  assert_select 'title', 'CricketLeagues.com'
-  #  assert_select 'h1', 'Batting Innings'
-  #end
-
   test "should get new" do
     get new_batting_innings_url
     assert_response :success
@@ -46,6 +38,6 @@ class BattingInningsControllerTest < ActionDispatch::IntegrationTest
       delete batting_innings_url(@batting_innings)
     end
 
-    assert_redirected_to batting_innings_index_url
+    assert_redirected_to matches_url
   end
 end

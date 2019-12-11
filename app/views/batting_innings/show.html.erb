@@ -49,5 +49,5 @@
   <%= if (@batting_innings.fielder != nil) then @batting_innings.fielder.name end %>
 </p>
 
-<%= link_to 'Edit', edit_batting_innings_path(@batting_innings) %> |
+<%= link_to 'Edit', edit_batting_innings_path(@batting_innings, edit: true) %> |
 <%= link_to 'Back', matches_path %>

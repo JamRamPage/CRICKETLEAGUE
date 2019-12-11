@@ -2,9 +2,9 @@
 $(document).on('turbolinks:load',function() {
   $("#innings_form").validate({
     rules: {
-      "innings[byes]": {required: true},
-      "innings[legbyes]": {required: true},
-      "innings[penalties]": {required: true},
+      "innings[byes]": {required: true, min: 0, digits: true},
+      "innings[legbyes]": {required: true, min: 0, digits: true},
+      "innings[penalties]": {required: true, min: 0, digits: true},
     }
   });
 });

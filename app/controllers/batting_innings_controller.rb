@@ -1,11 +1,6 @@
 class BattingInningsController < ApplicationController
   before_action :set_batting_innings, only: [:show, :edit, :update, :destroy]
 
-  # GET /batting_innings
-  # GET /batting_innings.json
-  def index
-    @batting_innings = BattingInnings.all
-  end
 
   # GET /batting_innings/1
   # GET /batting_innings/1.json
@@ -56,7 +51,7 @@ class BattingInningsController < ApplicationController
   def destroy
     @batting_innings.destroy
     respond_to do |format|
-      format.html { redirect_to batting_innings_index_url, notice: 'Batting innings was successfully destroyed.' }
+      format.html { redirect_to matches_path, notice: 'Batting innings was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

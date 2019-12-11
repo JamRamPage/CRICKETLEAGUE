@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  resources :batting_innings
-  resources :bowling_innings
+  #We don't need to index the batting or bowling innings pages
+  #because it's not possible to add them to a wrong innings by the program
+  #design, so they can be edited/deleted from match show.html.erb
+  resources :batting_innings, except: [:index]
+  resources :bowling_innings, except: [:index]
   resources :matches do
     #We don't need to index or show innings since the details
     #of each innings are shown in the match show page
