@@ -71,9 +71,9 @@ only screen and (max-width: 750px),
         <td><%= awayscorebattedruns + awayscorebowledextras + awayscoremiscextras%><%= if (awaywicketsconceded < 10) then '/' end %><%=if (awaywicketsconceded < 10) then awaywicketsconceded end %></td>
         <td><%= match.awayteam.name %></td>
         <td><%= match.stadium %></td>
-        <td><%= link_to 'Show', match %></td>
-        <td><%= link_to 'Edit', edit_match_path(match), :locals => {:type => 'Edit'} %></td>
-        <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to I18n.t('show') , match %></td>
+        <td><%= link_to I18n.t('edit'), edit_match_path(match), :locals => {:type => 'Edit'} %></td>
+        <td><%= link_to I18n.t('destroy'), match, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -81,4 +81,4 @@ only screen and (max-width: 750px),
 
 <br>
 
-<p style="text-align:center"><%= link_to 'New Match', new_match_path %></p>
+<p style="text-align:center"><%= link_to I18n.t('.matches.new'), new_match_path %></p>

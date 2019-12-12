@@ -1,12 +1,6 @@
 class BowlingInningsController < ApplicationController
   before_action :set_bowling_innings, only: [:show, :edit, :update, :destroy]
 
-  
-  # GET /bowling_innings/1
-  # GET /bowling_innings/1.json
-  def show
-  end
-
   # GET /bowling_innings/new
   def new
     @bowling_innings = BowlingInnings.new
@@ -23,7 +17,7 @@ class BowlingInningsController < ApplicationController
 
     respond_to do |format|
       if @bowling_innings.save
-        format.html { redirect_to @bowling_innings, notice: 'Bowling innings was successfully created.' }
+        format.html { redirect_to matches_path, notice: 'Bowling innings was successfully created.' }
         format.json { render :show, status: :created, location: @bowling_innings }
       else
         format.html { render :new }
@@ -37,7 +31,7 @@ class BowlingInningsController < ApplicationController
   def update
     respond_to do |format|
       if @bowling_innings.update(bowling_innings_params)
-        format.html { redirect_to @bowling_innings, notice: 'Bowling innings was successfully updated.' }
+        format.html { redirect_to matches_path, notice: 'Bowling innings was successfully updated.' }
         format.json { render :show, status: :ok, location: @bowling_innings }
       else
         format.html { render :edit }

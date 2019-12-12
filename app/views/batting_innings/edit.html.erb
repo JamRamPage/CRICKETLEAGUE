@@ -1,6 +1,5 @@
-<h1>Editing Batting Innings</h1>
+<h1><%= I18n.t('.matches.scorecard.edit_batting')%></h1>
 
 <%= render 'form', batting_innings: @batting_innings, edit: true %>
 
-<%= link_to 'Show', @batting_innings %> |
-<%= link_to 'Back', matches_path %>
+<%= link_to  I18n.t('back') , matches_path %>

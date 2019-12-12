@@ -1,12 +1,6 @@
 class BattingInningsController < ApplicationController
   before_action :set_batting_innings, only: [:show, :edit, :update, :destroy]
 
-
-  # GET /batting_innings/1
-  # GET /batting_innings/1.json
-  def show
-  end
-
   # GET /batting_innings/new
   def new
     @batting_innings = BattingInnings.new
@@ -23,7 +17,7 @@ class BattingInningsController < ApplicationController
 
     respond_to do |format|
       if @batting_innings.save
-        format.html { redirect_to @batting_innings, notice: 'Batting innings was successfully created.' }
+        format.html { redirect_to matches_path, notice: 'Batting innings was successfully created.' }
         format.json { render :show, status: :created, location: @batting_innings }
       else
         format.html { render :new }
@@ -37,7 +31,7 @@ class BattingInningsController < ApplicationController
   def update
     respond_to do |format|
       if @batting_innings.update(batting_innings_params)
-        format.html { redirect_to @batting_innings, notice: 'Batting innings was successfully updated.' }
+        format.html { redirect_to matches_path, notice: 'Batting innings was successfully updated.' }
         format.json { render :show, status: :ok, location: @batting_innings }
       else
         format.html { render :edit }

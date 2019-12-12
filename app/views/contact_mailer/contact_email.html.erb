@@ -5,15 +5,15 @@
   <%= I18n.t('home.request_contact.message') %>
 </p>
 <dl>
-  <dt>Name:</dt>
+  <dt><%= I18n.t('home.contact.name') %></dt>
   <dd>
     <%= @name %>
   </dd>
-  <dt>Email:</dt>
+  <dt><%= I18n.t('home.contact.email') %></dt>
   <dd>
     <%= @email %>
   </dd>
-  <dt>Telephone:</dt>
+  <dt><%= I18n.t('home.contact.telephone') %></dt>
   <dd>
     <%= @telephone %>
   </dd>
@@ -21,7 +21,7 @@
 <p>
   <%= @message %>
 </p>
-<p>Thanks</p>
+<p><%= I18n.t('home.contact.thanks') %></p>
 <p>
   <%= @name %>
 </p>

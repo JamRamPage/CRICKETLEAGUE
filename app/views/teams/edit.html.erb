@@ -1,6 +1,6 @@
-<h1>Editing Team</h1>
+<h1><%=I18n.t('.teams.edit')%></h1>
 
 <%= render 'form', team: @team %>
 
-<%= link_to 'Show', @team %> |
-<%= link_to 'Back', teams_path %>
+<%= link_to I18n.t('show'), @team %> |
+<%= link_to I18n.t('back'), teams_path %>

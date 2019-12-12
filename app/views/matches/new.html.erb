@@ -1,5 +1,5 @@
-<h1>New Match</h1>
+<h1><%=I18n.t('.matches.new')%></h1>
 
 <%= render 'form', match: @match, :locals => {:type => 'New'} %>
 
-<%= link_to 'Back', matches_path %>
+<%= link_to  I18n.t('back') , matches_path %>

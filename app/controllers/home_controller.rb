@@ -18,10 +18,10 @@ class HomeController < ApplicationController
   #Used to send emails:
   def request_contact
     #Gets form values that user has typed in:
-    name = params["name"]
-    email = params["email"]
-    telephone = params["telephone"]
-    message = params["message"]
+    name = contact_params["name"]
+    email = contact_params["email"]
+    telephone = contact_params["telephone"]
+    message = contact_params["message"]
 
     #If user has not typed in an email, alert them that
     #they should type one in:
@@ -35,4 +35,11 @@ class HomeController < ApplicationController
     #Go back to home page, where the appropriate prompt will be shown:
     redirect_to root_path
   end
+
+  private
+
+    #Only permit these parameters for an email request
+    def contact_params
+      params.permit(:name, :email, :telephone, :message)
+    end
 end

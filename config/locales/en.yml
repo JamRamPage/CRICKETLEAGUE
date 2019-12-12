@@ -28,8 +28,13 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
-
 en:
+
+  show: Show
+  edit: Edit
+  destroy: Destroy
+  back: Back
+
   app_title: CricketLeagues.com
   footer: Copyright James Page
 
@@ -56,9 +61,10 @@ en:
       enter_email: Enter your email address
       telephone: "Telephone:"
       enter_telephone: Enter your telephone number
-      message: "Message:"
+      message: /matches/1"Message:"
       enter_message: What do want to say?
       submit: "Submit"
+      thanks: Thanks
 
     request_contact:
       message: Could you get in touch with me please?
@@ -81,6 +87,8 @@ en:
 
 
   teams:
+    edit: Editing Team
+    new: New Team
     heading: Teams
     name: Name
     played: Played
@@ -88,12 +96,23 @@ en:
     drawn: Drawn
     lost: Lost
     no_result: No Result
-    points: Points
+    pts: Points
+
+    players:
+      edit: Editing Player
+      new: New Player
+      heading: Players
+      name: Name
+      dob: DOB
+      team: Team
+      role: Role
+      bathand: Batting Hand
+      bowlstyle: Bowling Style
+      domteam: Domestic Team
 
   matches:
-    create_innings: Create Innings
-    edit_innings: Edit Innings
-    add_innings: Add
+    new: New Match
+    edit: Editing Match
     heading: Matches
     date: Date
     home_team: Home Team
@@ -104,7 +123,14 @@ en:
     stadium: Stadium
 
     scorecard:
+      create_innings: Create Innings
+      edit_innings: Edit Innings
+      add_innings: Add
       innings_title: Innings
+      edit_batting: Editing Batting Innings
+      new_batting: New Batting Innings
+      edit_bowling: Editing Bowling Innings
+      new_bowling: New Bowling Innings
 
       batsman: Batsman
       how_out: How Out
@@ -113,6 +139,8 @@ en:
       fours: "4s"
       sixes: "6s"
       strike_rate: Strike Rate
+      extra: "Extras:"
+      total: "Total:"
 
       bowler: Bowler
       overs: Overs

@@ -1,5 +1,5 @@
-<h1>New Innings</h1>
+<h1><%= I18n.t('.matches.scorecard.create_innings')%></h1>
 <% @innings.hometeambatted = params[:hometeambatted] %>
 <%= render 'form', innings: @innings %>
 
-<%= link_to 'Back', match_path(@match) %>
+<%= link_to I18n.t('back') , match_path(@match) %>

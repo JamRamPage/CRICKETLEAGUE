@@ -1,4 +1,4 @@
-<h1>New Batting Innings</h1>
+<h1><%= I18n.t('.matches.scorecard.new_batting')%></h1>
 <% @batting_innings.Innings_id = params[:Innings_id] %>
 <%# Finds the players associated with the given innings. (Only these are shown in the drop down menu)%>
 <%
@@ -10,4 +10,4 @@ else
 end
 %>
 <%= render 'form', batting_innings: @batting_innings %>
-<%= link_to 'Back', matches_path %>
+<%= link_to  I18n.t('back') , matches_path %>

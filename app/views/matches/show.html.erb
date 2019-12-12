@@ -10,15 +10,15 @@ in a cricket scorecard format:%>
 <br>
 <div style="text-align:center">
   <p>
-    <strong>Date:</strong>
+    <strong><%=I18n.t('.matches.date')%></strong>
     <%= @match.date %>
   </p>
 
   <p>
-    <strong>Stadium:</strong>
+    <strong><%=I18n.t('.matches.stadium')%></strong>
     <%= @match.stadium %>
   </p>
 
-  <%= link_to 'Edit Match', edit_match_path(@match), :locals => {:type => 'Edit'} %> |
-  <%= link_to 'Back', matches_path %>
+  <%= link_to I18n.t('edit') , edit_match_path(@match), :locals => {:type => 'Edit'} %> |
+  <%= link_to I18n.t('back'), matches_path %>
 </div>

@@ -11,8 +11,8 @@
       <th><%= I18n.t('.matches.scorecard.wides') %></th>
       <%# Similarly to batting_innings, we don't want a user to be able to add a new
       bowling innings object unless the "Innings" for this team has already been created!%>
-      <th><%= if (locals[:team] == 'Home' && @homeinnings != nil) then link_to I18n.t('.matches.add_innings'), new_bowling_innings_path(Innings_id: @homeinnings, hometeambatted: true) end%></th>
-      <th><%= if (locals[:team] == 'Away' && @awayinnings != nil) then link_to I18n.t('.matches.add_innings'), new_bowling_innings_path(Innings_id: @awayinnings, hometeambatted: false) end%></th>
+      <th><%= if (locals[:team] == 'Home' && @homeinnings != nil) then link_to I18n.t('.matches.scorecard.add_innings'), new_bowling_innings_path(Innings_id: @homeinnings, hometeambatted: true) end%></th>
+      <th><%= if (locals[:team] == 'Away' && @awayinnings != nil) then link_to I18n.t('.matches.scorecard.add_innings'), new_bowling_innings_path(Innings_id: @awayinnings, hometeambatted: false) end%></th>
     </tr>
   </thead>
   <% if (locals[:team] == 'Home') then
@@ -32,8 +32,8 @@
         <td><%= (bowling_innings.runs.to_f / bowling_innings.overs.to_f).round(2) %></td>
         <td><%= bowling_innings.no_balls %></td>
         <td><%= bowling_innings.wides %></td>
-        <td><%= link_to 'Edit', edit_bowling_innings_path(bowling_innings, edit: true) %></td>
-        <td><%= link_to 'Destroy', bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to I18n.t('edit'), edit_bowling_innings_path(bowling_innings, edit: true) %></td>
+        <td><%= link_to I18n.t('destroy'), bowling_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
