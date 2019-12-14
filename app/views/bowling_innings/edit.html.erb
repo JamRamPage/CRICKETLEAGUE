@@ -1,5 +1,5 @@
-<h1><%= I18n.t('.matches.scorecard.edit_batting')%></h1>
+<h1><%= I18n.t('.matches.scorecard.edit_bowling')%></h1>
 
 <%= render 'form', bowling_innings: @bowling_innings, edit: true %>
 
-<%= link_to  I18n.t('back') , matches_path %>
+<%= link_to  I18n.t('back') , match_path(Match.matchFromInnings(Innings.where("Innings.id" => @bowling_innings.Innings_id))) %>

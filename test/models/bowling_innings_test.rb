@@ -268,4 +268,20 @@ class BowlingInningsTest < ActiveSupport::TestCase
     bowlinginnings.save
     refute bowlinginnings.valid?
   end
+
+  test 'should not save bowling innings with more maidens than overs' do
+    bowlinginnings = BowlingInnings.new
+
+    bowlinginnings.Innings = @innings
+    bowlinginnings.Player = @player
+    bowlinginnings.overs = 5
+    bowlinginnings.maidens = 6
+    bowlinginnings.runs = 24
+    bowlinginnings.wickets = 2
+    bowlinginnings.no_balls = 0
+    bowlinginnings.wides = 0
+
+    bowlinginnings.save
+    refute bowlinginnings.valid?
+  end
 end

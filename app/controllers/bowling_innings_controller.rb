@@ -17,7 +17,7 @@ class BowlingInningsController < ApplicationController
 
     respond_to do |format|
       if @bowling_innings.save
-        format.html { redirect_to matches_path, notice: 'Bowling innings was successfully created.' }
+        format.html { redirect_to match_path(Match.matchFromInnings(Innings.where("Innings.id" => @bowling_innings.Innings_id))), notice: 'Bowling innings was successfully created.' }
         format.json { render :show, status: :created, location: @bowling_innings }
       else
         format.html { render :new }
@@ -31,7 +31,7 @@ class BowlingInningsController < ApplicationController
   def update
     respond_to do |format|
       if @bowling_innings.update(bowling_innings_params)
-        format.html { redirect_to matches_path, notice: 'Bowling innings was successfully updated.' }
+        format.html { redirect_to match_path(Match.matchFromInnings(Innings.where("Innings.id" => @bowling_innings.Innings_id))), notice: 'Bowling innings was successfully updated.' }
         format.json { render :show, status: :ok, location: @bowling_innings }
       else
         format.html { render :edit }
@@ -45,7 +45,7 @@ class BowlingInningsController < ApplicationController
   def destroy
     @bowling_innings.destroy
     respond_to do |format|
-      format.html { redirect_to matches_path, notice: 'Bowling innings was successfully destroyed.' }
+      format.html { redirect_to match_path(Match.matchFromInnings(Innings.where("Innings.id" => @bowling_innings.Innings_id))), notice: 'Bowling innings was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

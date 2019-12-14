@@ -10,6 +10,8 @@ class BowlingInnings < ApplicationRecord
   validates :wickets, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10}
   #If a bowler bowled no overs, we should simply not store a database entry!
   validates :overs, numericality: {greater_than: 0}
+  #A bowler cannot bowl more maiden overs than they actually bowl:
+  validates :maidens, :numericality => { :less_than_or_equal_to => :overs }
 
   #Number of overs is a float value, but it can only be up to (x).5 because an over is comprised
   # of six deliveries.

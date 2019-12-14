@@ -189,4 +189,68 @@ class BattingInningsTest < ActiveSupport::TestCase
     refute battinginnings.valid?
   end
 
+  test 'should not save batting innings with sixes > balls' do
+    battinginnings = BattingInnings.new
+
+    battinginnings.Innings = @innings
+    battinginnings.Player = @player
+    battinginnings.runs = 5000
+    battinginnings.balls = 1
+    battinginnings.fours = 3
+    battinginnings.sixes = 5
+    battinginnings.howout = 0
+    battinginnings.batsman_number = 3
+
+    battinginnings.save
+    refute battinginnings.valid?
+  end
+
+  test 'should not save batting innings with fours > balls' do
+    battinginnings = BattingInnings.new
+
+    battinginnings.Innings = @innings
+    battinginnings.Player = @player
+    battinginnings.runs = 5000
+    battinginnings.balls = 1
+    battinginnings.fours = 5
+    battinginnings.sixes = 0
+    battinginnings.howout = 0
+    battinginnings.batsman_number = 3
+
+    battinginnings.save
+    refute battinginnings.valid?
+  end
+
+  test 'should not save batting innings with sixes > runs/6' do
+    battinginnings = BattingInnings.new
+
+    battinginnings.Innings = @innings
+    battinginnings.Player = @player
+    battinginnings.runs = 17
+    battinginnings.balls = 20
+    battinginnings.fours = 0
+    battinginnings.sixes = 3
+    battinginnings.howout = 0
+    battinginnings.batsman_number = 3
+
+    battinginnings.save
+    refute battinginnings.valid?
+  end
+
+  test 'should not save batting innings with fours > runs/6' do
+    battinginnings = BattingInnings.new
+
+    battinginnings.Innings = @innings
+    battinginnings.Player = @player
+    battinginnings.runs = 19
+    battinginnings.balls = 6
+    battinginnings.fours = 5
+    battinginnings.sixes = 0
+    battinginnings.howout = 0
+    battinginnings.batsman_number = 3
+
+    battinginnings.save
+    refute battinginnings.valid?
+  end
+
 end

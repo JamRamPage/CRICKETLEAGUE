@@ -64,7 +64,7 @@ the appropraite title and links to make/edit each innings%>
           <td><%= batting_innings.fours %></td>
           <td><%= batting_innings.sixes %></td>
           <td><%= ((batting_innings.runs.to_f / batting_innings.balls.to_f) * 100).round(2) %></td>
-          <td><%= link_to I18n.t('edit'), edit_batting_innings_path(batting_innings, edit: true) %></td>
+          <td><%= link_to I18n.t('edit'), edit_batting_innings_path(batting_innings, edit: true, hometeambatted: true, Innings_id: batting_innings.Innings_id) %></td>
           <td><%= link_to I18n.t('destroy'), batting_innings, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

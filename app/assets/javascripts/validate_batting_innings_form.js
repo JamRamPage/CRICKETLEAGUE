@@ -10,18 +10,19 @@ $(document).on('turbolinks:load',function() {
     }
   });
   jQuery.validator.addMethod("notTooManyFours", function(value, element) {
-    return ($('#batting_innings_fours').val() * 4) <= $('#batting_innings_runs').val();
+    return Math.round($('#batting_innings_fours').val() * 4) <= Math.round($('#batting_innings_runs').val());
   }, "Too many fours for the number of runs");
 
   jQuery.validator.addMethod("notTooManySixes", function(value, element) {
-    return Math.round(($('#batting_innings_sixes').val() * 6)) <= $('#batting_innings_runs').val();
+    return Math.round(($('#batting_innings_sixes').val() * 6)) <= Math.round($('#batting_innings_runs').val());
   }, "Too many sixes for the number of runs");
 
   jQuery.validator.addMethod("enoughBallsForFours", function(value, element) {
-    return Math.round($('#batting_innings_fours').val()) <= $('#batting_innings_balls').val();
+    return Math.round($('#batting_innings_fours').val()) <= Math.round($('#batting_innings_balls').val());
   }, "Number of fours too high for number of deliveries");
 
   jQuery.validator.addMethod("enoughBallsForSixes", function(value, element) {
-    return $('#batting_innings_sixes').val() <= $('#batting_innings_balls').val();
+    return Math.round($('#batting_innings_sixes').val()) <= Math.round($('#batting_innings_balls').val());
   }, "Number of sixes too high for number of deliveries");
+
 });

@@ -20,11 +20,11 @@
   <div class="field">
     <%= form.label :Player_id %>
     <%= if !(params[:edit] == "true" || @players == nil)
-        form.collection_select :Player_id, @players.order(:id), :id, :name, include_blank: false
+        form.collection_select :Player_id, @players.order(:name), :id, :name, include_blank: false
       elsif (params[:edit]=="true")
       form.hidden_field :Player_id, value: @bowling_innings.Player_id
       else
-      form.collection_select :Player_id, Player.all.order(:id), :id, :name, include_blank: false
+      form.collection_select :Player_id, Player.all.order(:name), :id, :name, include_blank: false
       end %>
   </div>
 

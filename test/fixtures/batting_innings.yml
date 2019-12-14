@@ -4,7 +4,7 @@ one:
   Innings: one
   Player: one
   batsman_number: 1
-  runs: 1
+  runs: 100
   balls: 1
   fours: 1
   sixes: 1
@@ -16,7 +16,7 @@ two:
   Innings: two
   Player: two
   batsman_number: 2
-  runs: 1
+  runs: 100
   balls: 1
   fours: 1
   sixes: 1

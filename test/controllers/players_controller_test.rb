@@ -6,39 +6,40 @@ class PlayersControllerTest < ActionDispatch::IntegrationTest
     @team = teams(:one)
   end
 
-#Not needed anymore since I have removed the Index page
-
-#  test "should get index" do
-#    get team_players_url(@team)
-#    assert_response :success
-#
-#    assert_select 'title', 'CricketLeagues.com'
-#    assert_select 'h1', 'Players'
-#  end
-
   test "should get new" do
     get new_team_player_url(@team, @player)
     assert_response :success
+    assert_select 'h1', 'New Player'
+    assert_select 'label', 'Name'
+    assert_select 'label', 'Dob'
+    assert_select 'label', 'Role'
+    assert_select 'label', 'Battinghand'
+    assert_select 'label', 'Bowlingstyle'
+    assert_select 'label', 'Domesticteam'
+    assert_select 'script' do
+      assert_select '[src=?]', 'validate_player_form.js'
+    end
+    assert_select 'a', 'Back'
+    assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
-
-#  test "should create player" do
-#    assert_difference('Player.count') do
-#      post team_players_url(@team), params: { player: { DOB: @player.DOB, battinghand: @player.battinghand, bowlingstyle: @player.bowlingstyle, domesticteam: @player.domesticteam, name: @player.name, role: @player.role, team_id: @team } }
-#    end
-#
-#    assert_redirected_to team_player_url(Player.last)
-#  end
-
-#Not needed anymore since I have removed the show page.
-
-#  test "should show player" do
-#    get team_player_url(@team, @player)
-#    assert_response :success
-#  end
 
   test "should get edit" do
     get edit_team_player_url(@team, @player)
     assert_response :success
+    assert_select 'h1', 'Editing Player'
+    assert_select 'label', 'Name'
+    assert_select 'label', 'Dob'
+    assert_select 'label', 'Role'
+    assert_select 'label', 'Battinghand'
+    assert_select 'label', 'Bowlingstyle'
+    assert_select 'label', 'Domesticteam'
+    assert_select 'script' do
+      assert_select '[src=?]', 'validate_player_form.js'
+    end
+    assert_select 'a', 'Back'
+    assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
 
   test "should update player" do

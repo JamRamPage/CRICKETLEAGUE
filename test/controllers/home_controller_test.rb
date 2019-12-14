@@ -12,6 +12,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
       assert_select '[src=?]', 'images/logo.jpg'
     end
     assert_select 'p', 'Use the nav bar to select the page to visit.'
+    assert_template layout: 'application'
   end
 
   test "should get contact" do
@@ -26,6 +27,12 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_select 'script' do
       assert_select '[src=?]', 'validate_contact_form.js'
     end
+    assert_select 'label', 'Name:'
+    assert_select 'label', 'Email:'
+    assert_select 'label', 'Telephone:'
+    assert_select 'label', 'Message:'
+    assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
 
   test "should post request contact but no email" do
@@ -59,6 +66,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_select 'th', 'Highest Score'
     assert_select 'th', 'Inningses'
     assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
 
   test "should get bowlers" do
@@ -76,6 +84,7 @@ class HomeControllerTest < ActionDispatch::IntegrationTest
     assert_select 'th', 'Inningses'
     assert_select 'th', 'Bowling Style'
     assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
 
 end

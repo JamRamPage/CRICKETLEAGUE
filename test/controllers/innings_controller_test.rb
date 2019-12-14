@@ -6,39 +6,34 @@ class InningsControllerTest < ActionDispatch::IntegrationTest
     @match = matches(:two)
   end
 
-#Not needed anymore since I have removed the index page
-
-#  test "should get index" do
-#    get match_innings_index_url(@match)
-#    assert_response :success
-#
-#    assert_select 'title', 'CricketLeagues.com'
-#    assert_select 'h1', 'Innings'
-#  end
-
   test "should get new" do
     get new_match_innings_url(@match, @innings)
     assert_response :success
+    assert_select 'h1', 'Create Innings'
+    assert_select 'label', 'Byes'
+    assert_select 'label', 'Legbyes'
+    assert_select 'label', 'Penalties'
+    assert_select 'script' do
+      assert_select '[src=?]', 'validate_innings_form.js'
+    end
+    assert_select 'a', 'Back'
+    assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
-
-#  test "should create innings" do
-#    assert_difference('Innings.count') do
-#      post match_innings_index_url(@match), params: { innings: { byes: @innings.byes, hometeambatted: @innings.hometeambatted, legbyes: @innings.legbyes, match_id: @innings.match_id, penalties: @innings.penalties } }
-#    end
-#
-#    assert_redirected_to match_innings_path(Innings.last)
-#  end
-
-#Not needed anymore since I have removed the show page
-
-#  test "should show innings" do
-#    get match_innings_url(@match, @innings)
-#    assert_response :success
-#  end
 
   test "should get edit" do
     get edit_match_innings_url(@match, @innings)
     assert_response :success
+    assert_select 'h1', 'Edit Innings'
+    assert_select 'label', 'Byes'
+    assert_select 'label', 'Legbyes'
+    assert_select 'label', 'Penalties'
+    assert_select 'script' do
+      assert_select '[src=?]', 'validate_innings_form.js'
+    end
+    assert_select 'a', 'Back'
+    assert_select 'p', 'Copyright James Page 2019'
+    assert_template layout: 'application'
   end
 
   test "should update innings" do

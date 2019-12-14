@@ -18,4 +18,7 @@ class Match < ApplicationRecord
   #A match is composed of up to 2 inningses (You might only enter 1 if the match
   #is currently ongoing)
   has_many :innings, dependent: :destroy
+
+  scope :matchFromInnings, -> (innings) {Match.joins("INNER JOIN Innings ON Innings.match_id = matches.id").where("innings.id" => innings).take}
+
 end

@@ -1,5 +1,15 @@
 <h1><%= I18n.t('.matches.scorecard.edit_batting')%></h1>
-
+<% @batting_innings.Innings_id = params[:Innings_id] %>
+<%# Finds the players associated with the given innings. (Only these are shown in the drop down menu)%>
+<%
+@hometeambatted = params[:hometeambatted]
+if @hometeambatted == "true"
+  @batplayers = Player.joins("INNER JOIN teams INNER JOIN matches INNER JOIN innings ON players.team_id = teams.id AND teams.id = matches.hometeam_id AND matches.id = innings.match_id").where("innings.id" => @batting_innings.Innings_id)
+  @bowlplayers = Player.joins("INNER JOIN teams INNER JOIN matches INNER JOIN innings ON players.team_id = teams.id AND teams.id = matches.awayteam_id AND matches.id = innings.match_id").where("innings.id" => @batting_innings.Innings_id)
+else
+  @batplayers = Player.joins("INNER JOIN teams INNER JOIN matches INNER JOIN innings ON players.team_id = teams.id AND teams.id = matches.awayteam_id AND matches.id = innings.match_id").where("innings.id" => @batting_innings.Innings_id)
+  @bowlplayers = Player.joins("INNER JOIN teams INNER JOIN matches INNER JOIN innings ON players.team_id = teams.id AND teams.id = matches.hometeam_id AND matches.id = innings.match_id").where("innings.id" => @batting_innings.Innings_id)
+end
+%>
 <%= render 'form', batting_innings: @batting_innings, edit: true %>
-
-<%= link_to  I18n.t('back') , matches_path %>
+<%= link_to  I18n.t('back') , match_path(Match.matchFromInnings(@batting_innings.Innings_id)) %>

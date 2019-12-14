@@ -12,7 +12,7 @@ $(document).on('turbolinks:load',function() {
   });
 
   jQuery.validator.addMethod("lessThanOvers", function(value, element) {
-    return $('#bowling_innings_maidens').val() <= $('#bowling_innings_overs').val();
+    return Math.round($('#bowling_innings_maidens').val()) <= Math.round($('#bowling_innings_overs').val());
   }, "Number of maiden overs must be <= number of overs");
 
   jQuery.validator.addMethod("oversValidFormat", function(value, element) {

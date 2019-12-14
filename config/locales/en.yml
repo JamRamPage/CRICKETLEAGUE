@@ -61,7 +61,7 @@ en:
       enter_email: Enter your email address
       telephone: "Telephone:"
       enter_telephone: Enter your telephone number
-      message: /matches/1"Message:"
+      message: "Message:"
       enter_message: What do want to say?
       submit: "Submit"
       thanks: Thanks

@@ -20,12 +20,12 @@
   <div class="field">
     <%# We only show the players relevant to this innings (ie the ones in this team that is batting:)%>
     <%= form.label :Player_id %>
-    <%= if !(params[:edit] == "true" || @players == nil)
-        form.collection_select :Player_id, @players.order(:id), :id, :name, include_blank: false
+    <%= if !(params[:edit] == "true" || @batplayers == nil)
+        form.collection_select :Player_id, @batplayers.order(:name), :id, :name, include_blank: false
       elsif (params[:edit] == "true")
       form.hidden_field :Player_id, value: @batting_innings.Player_id
       else
-      form.collection_select :Player_id, Player.all.order(:id), :id, :name, include_blank: false
+      form.collection_select :Player_id, Player.all.order(:name), :id, :name, include_blank: false
       end
       %>
   </div>
@@ -62,12 +62,20 @@
 
   <div class="field">
     <%= form.label :bowler_id %>
-    <%= form.collection_select :bowler_id, Player.where('bowlingstyle != 0').order(:name), :id, :name, include_blank: true %>
+    <%= if !(@bowlplayers == nil)
+        form.collection_select :bowler_id, @bowlplayers.bowlers.order(:id), :id, :name, include_blank: true
+      else
+      form.collection_select :bowler_id, Player.all.order(:id), :id, :name, include_blank: true
+      end %>
   </div>
 
   <div class="field">
     <%= form.label :fielder_id %>
-    <%= form.collection_select :fielder_id, Player.order(:name), :id, :name, include_blank: true %>
+    <%= if !(@bowlplayers == nil)
+        form.collection_select :fielder_id, @bowlplayers.order(:id), :id, :name, include_blank: true
+      else
+      form.collection_select :fielder_id, Player.all.order(:id), :id, :name, include_blank: true
+      end %>
   </div>
 
   <div class="actions">

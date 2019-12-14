@@ -16,7 +16,7 @@ class MatchTest < ActiveSupport::TestCase
   test 'should not save match between the same teams' do
     match = Match.new
     match.hometeam = @team1
-    match.awayteam = @team2
+    match.awayteam = @team1
 
     match.save
     refute match.valid?
